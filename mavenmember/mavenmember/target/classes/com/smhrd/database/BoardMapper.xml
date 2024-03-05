@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.database.BoardMapper">
+	<select id = "list" resultType="com.smhrd.model.Board"> 
+	select * from board 
+	</select>
+	<insert id="insert" parameterType="com.smhrd.model.Board">
+      insert into board values(board_seq.NEXTVAL,#{title},#{content},#{writer},#{img},SYSDATE)
+   </insert>
+   <select id="content" parameterType="int" resultType = "com.smhrd.model.Board">
+   select * from board where idx=#{idx}
+   </select>
+
+
+
+</mapper>
+	
+	
