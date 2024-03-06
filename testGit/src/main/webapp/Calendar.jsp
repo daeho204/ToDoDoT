@@ -25,7 +25,8 @@
 
   		textInput = textInput.value
   		eventInput = eventInput.value
-		
+		console.log(textInput)
+		console.log(eventInput)
 
         })
   	
