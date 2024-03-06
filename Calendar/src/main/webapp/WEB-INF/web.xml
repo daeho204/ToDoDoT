@@ -1,0 +1,79 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>JoinController</servlet-name>
+  	<display-name>JoinController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.JoinController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoginController</servlet-name>
+  	<display-name>LoginController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogoutController</servlet-name>
+  	<display-name>LogoutController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.LogoutController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateController</servlet-name>
+  	<display-name>UpdateController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.UpdateController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteController</servlet-name>
+  	<display-name>DeleteController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.DeleteController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>IdCheckController</servlet-name>
+  	<display-name>IdCheckController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.IdCheckController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BoardInsert</servlet-name>
+  	<display-name>BoardInsert</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.BoardInsert</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>JoinController</servlet-name>
+  	<url-pattern>/JoinController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginController</servlet-name>
+  	<url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutController</servlet-name>
+  	<url-pattern>/LogoutController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateController</servlet-name>
+  	<url-pattern>/UpdateController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteController</servlet-name>
+  	<url-pattern>/DeleteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>IdCheckController</servlet-name>
+  	<url-pattern>/IdCheckController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BoardInsert</servlet-name>
+  	<url-pattern>/BoardInsert</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
