@@ -46,6 +46,12 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.BoardInsert</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Maptest</servlet-name>
+  	<display-name>Maptest</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.chat.Maptest</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
@@ -74,6 +80,10 @@
   <servlet-mapping>
   	<servlet-name>BoardInsert</servlet-name>
   	<url-pattern>/BoardInsert</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Maptest</servlet-name>
+  	<url-pattern>/Maptest</url-pattern>
   </servlet-mapping>
   
 </web-app>
