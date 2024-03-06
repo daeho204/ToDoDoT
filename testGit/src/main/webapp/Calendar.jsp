@@ -9,6 +9,7 @@
 </head>
 <body>
 <input type="text" id="textInput" placeholder="Enter a date in YYYY-MM-DD format">
+<input type="text" id="eventInput" placeholder="Enter a name of the event">
 <button id="submit">클릭<button>
 <div id = 'calendar'></div>
 
@@ -17,12 +18,14 @@
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
   	<script>
   	let textInput = document.getElementById("textInput")
+  	let eventInput = document.getElementById("eventInput")
   	let button = document.getElementById("submit")
   	submit.addEventListener('click', function () {
 
 
-  		console.log(textInput.value)
-
+  		textInput = textInput.value
+  		eventInput = eventInput.value
+		
 
         })
   	
@@ -38,11 +41,11 @@
           addEventButton: {
             text: '일정추가',
             click: function () {
-              var date = new Date(textInput.value + 'T00:00:00'); // will be in local time
+              var date = new Date(textInput + 'T00:00:00'); // will be in local time
 
               if (!isNaN(date.valueOf())) { // valid?
                 calendar.addEvent({
-                  title: 'dynamic event',
+                  title: eventInput,
                   start: date,
                   allDay: true
                 });
