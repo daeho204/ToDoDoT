@@ -1,11 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8' />
+  <meta charset="utf-8" />
   <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <!-- jquery CDN -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <!-- fullcalendar CDN -->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
@@ -31,6 +35,56 @@
   <div id='calendar-container'>
     <div id='calendar'></div>
   </div>
+  
+  <!-- Bootstrap modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">일정 추가하기</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            일정이름 : <input type="text" id="title" /><br />
+            시작시간 : <input type="datetime-local" id="start" /><br />
+            종료시간 : <input type="datetime-local" id="end" /><br />
+            배경색상 :
+            <select id="color">
+              <option value="red">빨강색</option>
+              <option value="orange">주황색</option>
+              <option value="yellow">노랑색</option>
+              <option value="green">초록색</option>
+              <option value="blue">파랑색</option>
+              <option value="indigo">남색</option>
+              <option value="purple">보라색</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              취소
+            </button>
+            <button type="button" class="btn btn-primary" id="saveChanges">
+              추가
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
  
   
   <script>
@@ -44,9 +98,22 @@
         expandRows: true, // 화면에 맞게 높이 재설정
         slotMinTime: '10:00', // Day 캘린더에서 시작 시간
         slotMaxTime: '21:00', // Day 캘린더에서 종료 시간
+        
+        customButtons:{
+        	myCustomButton:{
+        		text:"일정추가",
+        		click : function(){
+        			$("#exampleModal").modal("show");
+        		}
+        		
+        	},
+        	mySaveButton:{
+        		text:"저장하기"
+        	}
+        },
         // 해더에 표시할 툴바
         headerToolbar: {
-          left: 'prev,next today',
+          left: 'prev,next today, myCustomButton, mySaveButton',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
@@ -68,8 +135,8 @@
           console.log(obj);
         },
         select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-          var title = prompt('Event Title:');
-      
+          //var title = prompt('Event Title:');
+        	$('#exampleModal').modal('show');
         		
           if (title) {
             calendar.addEvent({
