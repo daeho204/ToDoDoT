@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.database.Mapper">
+
+	<insert id="join" parameterType="Member">
+		insert into member
+		values(#{id},#{pw},#{tel},#{address})
+	</insert>
+
+	<select id="login" parameterType="Member"
+	resultType="Member">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<update id="update" parameterType="Member">
+		update member set pw=#{pw}, tel=#{tel}, address=#{address} where id=#{id}
+	</update>
+	<select id="select" resultType="Member">
+		select * from member
+	</select>
+	<delete id="delete">
+		delete from member where id=#{id}
+	</delete>
+	<select id="check" parameterType = "String" resultType = "com.smhrd.model.Member">
+		select * from member where id=#{id}
+	</select>
+
+
+</mapper>
