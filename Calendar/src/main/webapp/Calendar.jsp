@@ -5,9 +5,17 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css"
-	rel="stylesheet">
+  <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <!-- jquery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- fullcalendar CDN -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+  <!-- fullcalendar 언어 CDN -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 </head>
 <body>
 
@@ -16,105 +24,103 @@
 	</div>
 
 
-	<!-- modal 추가 -->
-	<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">일정을 입력하세요.</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="taskId" class="col-form-label">일정 내용</label> <input
-							type="text" class="form-control" id="calendar_content"
-							name="calendar_content"> <label for="taskId"
-							class="col-form-label">시작 날짜</label> <input type="date"
-							class="form-control" id="calendar_start_date"
-							name="calendar_start_date"> <label for="taskId"
-							class="col-form-label">종료 날짜</label> <input type="date"
-							class="form-control" id="calendar_end_date"
-							name="calendar_end_date">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" id="addCalendar">추가</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" id="sprintSettingModalClose">취소</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-</body>
-
-
-
+	
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
 <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                timeZone: 'UTC',
-                initialView: 'timeGridWeek', // 홈페이지에서 다른 형태의 view를 확인할  수 있다.
-                events:[ // 일정 데이터 추가 , DB의 event를 가져오려면 JSON 형식으로 변환해 events에 넣어주면된다.
-                    {
-                        title:'일정',
-                        start:'2021-05-26 00:00:00',
-                        end:'2021-05-27 24:00:00' 
-                        // color 값을 추가해 색상도 변경 가능 자세한 내용은 하단의 사이트 참조
-                    }
-                ], headerToolbar: {
-                    center: 'addEventButton' // headerToolbar에 버튼을 추가
-                }, customButtons: {
-                    addEventButton: { // 추가한 버튼 설정
-                        text : "일정 추가",  // 버튼 내용
-                        click : function(){ // 버튼 클릭 시 이벤트 추가
-                            $("#calendarModal").modal("show"); // modal 나타내기
 
-                            $("#addCalendar").on("click",function(){  // modal의 추가 버튼 클릭 시
-                                var content = $("#calendar_content").val();
-                                var start_date = $("#calendar_start_date").val();
-                                var end_date = $("#calendar_end_date").val();
-                                
-                                //내용 입력 여부 확인
-                                if(content == null || content == ""){
-                                    alert("내용을 입력하세요.");
-                                }else if(start_date == "" || end_date ==""){
-                                    alert("날짜를 입력하세요.");
-                                }else if(new Date(end_date)- new Date(start_date) < 0){ // date 타입으로 변경 후 확인
-                                    alert("종료일이 시작일보다 먼저입니다.");
-                                }else{ // 정상적인 입력 시
-                                    var obj = {
-                                        "title" : content,
-                                        "start" : start_date,
-                                        "end" : end_date
-                                    }//전송할 객체 생성
+var calendar= null;
+var localeSelectorEl = document.getElementById('locale-selector');
 
-                                    console.log(obj); //서버로 해당 객체를 전달해서 DB 연동 가능
-                                }
-                            });
-                        }
-                    }
-                },
-                editable: true, // false로 변경 시 draggable 작동 x 
-                displayEventTime: false // 시간 표시 x
-            });
-            calendar.render();
+$(document).ready(function() {
+ var calendarEl = document.getElementById('calendar');
+
+ // 캘린더에 값주기 
+ calendar = new FullCalendar.Calendar(calendarEl, {
+   headerToolbar: {
+     left: 'prev,next today',
+     center: 'title',
+     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+   },
+   initialDate: '2023-04-17',
+   navLinks: true, // can click day/week names to navigate views
+   selectable: true,
+   editable: true,
+   selectMirror: true,
+   droppable: true, 
+   eventAdd: function () { // 이벤트가 추가되면 발생하는 이벤트
+                         console.log()
+                     },
+   // 일정추가하기 기능 
+   select: function(arg) {
+     // 프롬프트로 추가가능 
+     var title = prompt('Add schedule:');
+
+     if (title) {
+       //이벤트 추가
+       calendar.addEvent({
+         title: title,
+         start: arg.start,
+         end: arg.end,
+       })
+     }
+     var allEvent = calendar.getEvents(); //.getEvents() 함수로 모든 이벤트를 Array 형식으로 가져온다. (FullCalendar 기능 참조)
+      
+     // 이벤트를 배열에 한 번 더 담아준다. json 데이터를 받기 위한 배열 선언 
+     var events = new Array();
+
+       // for문을 돌린다. allEvent의 길이만큼 i를 돌린다. 
+       for(var i =0; i <allEvent.length; i++ ){
+       // obj 객체에 json을 담는다. 
+      var obj = new Object();
+  
+       // 디비에 저장할 내용
+        obj.title= allEvent[i]._def.title // 이벤트 명칭 출력
+        obj.start= allEvent[i]._instance.range.start; // 이벤트 시작 시간 및 날짜
+        obj.end= allEvent[i]._instance.range.end; // 이벤트 종료 시간 및 날짜
+
+       // 전체 events들이 배열형태로 json 객체 형태로 events 변수에 담긴다. 
+        events.push(obj);
+     }
+
+     // events를 서버 전송시, 문자열 형태로 넘길것이라 stringfy를 사용
+     var jsondata= JSON.stringify(events);
+     console.dir(jsondata);
+     // saveData(jsondata);
+
+     $(function saveData(jsondata) {
+           $.ajax({
+            url: "/status/event",
+            method: "POST",
+           dataType: "json",
+           data: JSON.stringify(events),
+           contentType: 'application/json',
+          })
+              .done(function (result) {
+                alert(result);
+                 })
+               .fail(function (request, status, error) {
+                   alert("에러 발생" + error);
+                 });
+              calendar.unselect()
         });
-    </script>
-    <style>
-        #calendarBox{
-            width: 70%;
-            padding-left: 15%;
-        }
+   },
+   // 삭제기능
+   eventClick: function(arg) {
+     if (confirm('Do you want to delete this event?')) {
+       arg.event.remove()
+     }
+   },
+   editable: true,
+   dayMaxEvents: true, // allow "more" link when too many events
+   events: [
+   
+   ]
+ });
 
-    </style>
+ calendar.render();
+});
+</script>
 </head>
 </body>
 </html>
