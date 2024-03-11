@@ -21,8 +21,9 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/smhrd/database/Mapper.xml" />
-		<mapper resource="com/smhrd/database/BoardMapper.xml" />
+		<!-- <mapper resource="com/smhrd/database/Mapper.xml" />
+		<mapper resource="com/smhrd/database/BoardMapper.xml" /> -->
 		<mapper resource="com/smhrd/database/CalendarMapper.xml" />
+		<mapper resource="com/smhrd/database/StoreMapper.xml" />
 	</mappers>
 </configuration>

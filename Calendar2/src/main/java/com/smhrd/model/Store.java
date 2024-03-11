@@ -1,52 +1,88 @@
 package com.smhrd.model;
 
+import java.math.BigDecimal;
+
 public class Store {
-	private int USER_BNUM;
-	private String STORE_NAME;
-	private String STORE_ADDRESS;
-	private String STORE_CONTACT;
+	private BigDecimal User_bnum;
+	private String Store_name;
+	private String Store_address;
+	private String Store_contact;
+	private String Store_descript;
+	private String Store_img;
+
 	
-public Store(int USER_BNUM, String STORE_NAME, String STORE_ADDRESS, String STORE_CONTACT) {
-		this.USER_BNUM = USER_BNUM;
-		this.STORE_NAME = STORE_NAME;
-		this.STORE_ADDRESS = STORE_ADDRESS;
-		this.STORE_CONTACT = STORE_CONTACT;
+
+	public Store(BigDecimal User_bnum, String Store_name, String Store_address, String Store_contact,
+			String Store_img) {
+		this.User_bnum = User_bnum;
+		this.Store_name = Store_name;
+		this.Store_address = Store_address;
+		this.Store_contact = Store_contact;
+		this.Store_img = Store_img;
 	}
-	
-	public Store( String STORE_NAME, String STORE_ADDRESS, String STORE_CONTACT) {
-		
-		this.STORE_NAME = STORE_NAME;
-		this.STORE_ADDRESS = STORE_ADDRESS;
-		this.STORE_CONTACT = STORE_CONTACT;
-	}
-	public Store(String STORE_NAME) {
-		this.STORE_NAME = STORE_NAME;
-	}
-	public int getUSER_BNUM() {
-		return USER_BNUM;
-	}
-	public void setUSER_BNUM(int uSER_BNUM) {
-		USER_BNUM = uSER_BNUM;
-	}
-	public String getSTORE_NAME() {
-		return STORE_NAME;
-	}
-	public void setSTORE_NAME(String sTORE_NAME) {
-		STORE_NAME = sTORE_NAME;
-	}
-	public String getSTORE_ADDRESS() {
-		return STORE_ADDRESS;
-	}
-	public void setSTORE_ADDRESS(String sTORE_ADDRESS) {
-		STORE_ADDRESS = sTORE_ADDRESS;
-	}
-	public String getSTORE_CONTACT() {
-		return STORE_CONTACT;
-	}
-	public void setSTORE_CONTACT(String sTORE_CONTACT) {
-		STORE_CONTACT = sTORE_CONTACT;
+
+	public Store(String Store_name, String Store_address, String Store_contact, String Store_img) {
+
+		this.Store_name = Store_name;
+		this.Store_address = Store_address;
+		this.Store_contact = Store_contact;
+		this.Store_img = Store_img;
+
 	}
 	
 	
+	
+
+	public Store(String Store_name) {
+		this.Store_name = Store_name;
+	}
+
+	public BigDecimal getUser_bnum() {
+		return User_bnum;
+	}
+
+	public void setUser_bnum(BigDecimal User_bnum) {
+		User_bnum = User_bnum;
+	}
+
+	public String getStore_name() {
+		return Store_name;
+	}
+
+	public void setStore_name(String Store_name) {
+		Store_name = Store_name;
+	}
+
+	public String getStore_address() {
+		return Store_address;
+	}
+
+	public void setStore_address(String Store_address) {
+		Store_address = Store_address;
+	}
+
+	public String getStore_contact() {
+		return Store_contact;
+	}
+
+	public void setStore_contact(String Store_contact) {
+		Store_contact = Store_contact;
+	}
+	
+	public String getStore_img() {
+		return Store_img;
+	}
+
+	public void setStore_img(String store_img) {
+		Store_img = store_img;
+	}
+	
+	public String getStore_descript() {
+		return Store_descript;
+	}
+
+	public void setStore_descript(String store_descript) {
+		Store_descript = store_descript;
+	}
 
 }

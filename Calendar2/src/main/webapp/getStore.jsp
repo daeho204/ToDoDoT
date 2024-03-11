@@ -19,7 +19,7 @@
 <%
 	StoreDAO dao = new StoreDAO();
 	List<Store> list = dao.StoreList();
-
+	
 	
 	pageContext.setAttribute("list", list);
 	System.out.print(list.size());
@@ -31,9 +31,10 @@
 		<c:forEach items="${list}" var="b" varStatus = "status"> 
 			<tr>
 				<td></td>
-				<td>${b.STORE_NAME}</td>
-				<td>${b.STORE_ADDRESS}</td>
-				<td>${b.STORE_CONTACT}</td>
+				<td>${b.store_name}</td>
+				<td>${b.store_address}</td>
+				<td>${b.store_contact}</td>
+				
 				
 			</tr>
 			</c:forEach>

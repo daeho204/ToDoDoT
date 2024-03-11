@@ -2,8 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.database.StoreMapper">
 	<select id="getStore" resultType="com.smhrd.model.Store">
-		select * from tb_store; 
+		select STORE_NAME, STORE_ADDRESS, STORE_CONTACT from tb_store 
 	</select>
+	
+	<insert id="join" parameterType="com.smhrd.model.Store">
+      insert into TB_STORE (store_name,store_address,store_contact, store_img)
+      values(#{store_name},#{store_address},#{store_contact}, #{store_img})
+
+   </insert>
+  
 	
 	
 </mapper>
