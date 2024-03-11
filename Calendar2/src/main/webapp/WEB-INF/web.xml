@@ -46,6 +46,12 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.BoardInsert</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CalendarServlet</servlet-name>
+  	<display-name>CalendarServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.CalendarServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
@@ -75,5 +81,6 @@
   	<servlet-name>BoardInsert</servlet-name>
   	<url-pattern>/BoardInsert</url-pattern>
   </servlet-mapping>
+
   
 </web-app>

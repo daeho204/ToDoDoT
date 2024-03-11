@@ -63,7 +63,17 @@
         		
         	},
         	mySaveButton:{
-        		text:"저장하기"
+        		text:"저장하기",
+        		click: async function(){
+        			if(confirm("저장하시겠습니까?")){
+        				let allEvent = calendar.getEvents();
+        				const saveEvent = await axios({
+        					method : "POST",
+        					url : "/calendar",
+        					data: allEvent,
+        				})
+        			}
+        		}
         	}
         },
         // 해더에 표시할 툴바
@@ -84,13 +94,9 @@
           console.log(obj);
         },
         eventChange: function(arg) { // 이벤트가 수정되면 발생하는 이벤트
-        	
-            
+                 
         },
         eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
-        	if (confirm('Do you want to delete this event?')) {
-                arg.event.remove()
-              }
         },
         select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
           var title = prompt('Event Title:');
@@ -111,7 +117,9 @@
       });
       // 캘린더 랜더링
       calendar.render();
-  
+    });
+  })();
+
 </script>
 </body>
 </html>
