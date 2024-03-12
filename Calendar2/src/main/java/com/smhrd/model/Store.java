@@ -3,7 +3,8 @@ package com.smhrd.model;
 import java.math.BigDecimal;
 
 public class Store {
-	private BigDecimal User_bnum;
+	private int Store_id;
+	private int User_bnum;
 	private String Store_name;
 	private String Store_address;
 	private String Store_contact;
@@ -12,13 +13,20 @@ public class Store {
 
 	
 
-	public Store(BigDecimal User_bnum, String Store_name, String Store_address, String Store_contact,
+	public Store(int User_bnum, String Store_name, String Store_address, String Store_contact,
 			String Store_img) {
 		this.User_bnum = User_bnum;
 		this.Store_name = Store_name;
 		this.Store_address = Store_address;
 		this.Store_contact = Store_contact;
 		this.Store_img = Store_img;
+	}
+	public Store(int Store_id, String Store_name, String Store_address, String Store_contact) {
+		this.Store_id = Store_id;
+		this.Store_name = Store_name;
+		this.Store_address = Store_address;
+		this.Store_contact = Store_contact;
+		
 	}
 
 	public Store(String Store_name, String Store_address, String Store_contact, String Store_img) {
@@ -29,15 +37,28 @@ public class Store {
 		this.Store_img = Store_img;
 
 	}
-	
-	
-	
+	public Store(String Store_name, String Store_address, String Store_contact) {
 
-	public Store(String Store_name) {
 		this.Store_name = Store_name;
+		this.Store_address = Store_address;
+		this.Store_contact = Store_contact;
+		
+
+	}
+	
+	public Store(String Store_img) {
+		
+		this.Store_img = Store_img;
+
+	}
+	
+	public int getStore_id() {
+		return Store_id;
 	}
 
-	public BigDecimal getUser_bnum() {
+	
+
+	public int getUser_bnum() {
 		return User_bnum;
 	}
 

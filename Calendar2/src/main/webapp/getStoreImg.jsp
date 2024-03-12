@@ -18,28 +18,23 @@
 <body>
 <%
 	StoreDAO dao = new StoreDAO();
-	List<Store> list = dao.StoreList();
+	Store store = dao.storeContent();
 	
-	pageContext.setAttribute("list", list);
-	System.out.print(list.size());
+	pageContext.setAttribute("store", store);
 	
 	
 %>
 	<div>
 		<table width = 500px height = 150px border = 2px solid black>
-		<c:forEach items="${list}" var="b" varStatus = "status"> 
+		
 			<tr>
-				<td><a href = "getStoreImg.jsp?store_id">가게선택</a></td>
-				<td>${b.store_id}</td>
-				<td>${b.store_name}</td>
-				<td>${b.store_name}</td>
-				<td>${b.store_name}</td>
-				<td>${b.store_address}</td>
-				<td>${b.store_address}</td>
-				<td>${b.store_contact}</td>
-				<td>${b.store_contact}</td>
+				<td>${store.store_img}</td>
+				<td></td>
+			
+				
+				
 			</tr>
-			</c:forEach>
+			
 		</table>
 	</div>
 </body>
