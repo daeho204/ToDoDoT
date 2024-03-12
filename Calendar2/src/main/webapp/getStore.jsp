@@ -21,7 +21,8 @@
 	List<Store> list = dao.StoreList();
 	
 	pageContext.setAttribute("list", list);
-	System.out.print(list.size());
+	
+	
 	
 	
 %>
@@ -29,15 +30,11 @@
 		<table width = 500px height = 150px border = 2px solid black>
 		<c:forEach items="${list}" var="b" varStatus = "status"> 
 			<tr>
-				<td><a href = "getStoreImg.jsp?store_id">가게선택</a></td>
-				<td>${b.store_id}</td>
-				<td>${b.store_name}</td>
-				<td>${b.store_name}</td>
-				<td>${b.store_name}</td>
-				<td>${b.store_address}</td>
-				<td>${b.store_address}</td>
-				<td>${b.store_contact}</td>
-				<td>${b.store_contact}</td>
+				<td><a href = "getStoreImg.jsp?store_id=${b.store_id}">가게선택</a></td>
+				<td>STORE_ID : ${b.store_id}</td>
+				<td>STORE_NAME : ${b.store_name}</td>
+				<td>STORE_ADD : ${b.store_address}</td>
+				<td>STORE_CONT : ${b.store_contact}</td>
 			</tr>
 			</c:forEach>
 		</table>

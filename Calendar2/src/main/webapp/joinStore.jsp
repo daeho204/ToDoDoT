@@ -18,37 +18,6 @@
       <input type="submit" value="JoinUs" class="button fit">
    </form>
    
-   <div class="panel-body" id="list">
-    	  <table class="table table-bordered">
-		    <thead>
-		      <tr>
-		        <th>번호</th>
-		        <th>제목</th>
-		        <th>작성자</th>
-		        <th>작성일</th>
-		        <th>삭제</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-			<!-- 게시물 출력 -->
-			<c:forEach items="${list}" var="b" varStatus = "status"> 
-			<tr>
-				<td>${status.count}</td>		
-				<td><a href ="boardcontent.jsp?idx=${b.idx}">${b.title}</a></td>		
-				<td>${b.writer}</td>		
-				<td>${b.indate}</td>		
-			</tr>
-			</c:forEach>
-		      <tr>
-		      	<td colspan="4">
-		      		<button onclick="location.href='boardform.jsp'" class="btn btn-sm btn-success">글작성</button>
-		      		<button onclick="chat()" class="btn btn-sm btn-success">채팅하기</button>
-		      	</td>
-		      </tr>
-		    </tbody>
-		  </table>
-    
-    </div>
-
+   
 </body>
 </html>

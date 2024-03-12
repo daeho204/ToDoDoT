@@ -6,7 +6,8 @@
 	<properties resource="com/smhrd/database/db.properties" />
 
  	<typeAliases>
-		<typeAlias type="com.smhrd.model.Member" alias="Member"></typeAlias>
+		<typeAlias type="com.smhrd.model.Store" alias="Store"/>
+		<typeAlias type="com.smhrd.model.Menu" alias="Menu"/>
 	</typeAliases>
 
 	<environments default="development">

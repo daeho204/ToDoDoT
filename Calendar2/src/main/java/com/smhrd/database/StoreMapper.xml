@@ -10,8 +10,8 @@
       values(SEQ_STORE_ID.NEXTVAL, #{store_name},#{store_address},#{store_contact}, #{store_img})
 
    </insert>
-  <select id="content"  resultType = "com.smhrd.model.Store">
-   select * from TB_STORE where STORE_ID = #{idx}
+  <select id="content"  parameterType="int" resultType = "com.smhrd.model.Store">
+   select * from TB_STORE where STORE_ID=#{store_id}
    </select>
 	
 	<insert id="menuadd" parameterType="Menu">

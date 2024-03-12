@@ -17,18 +17,19 @@
 </head>
 <body>
 <%
+	int store_id = Integer.parseInt(request.getParameter("store_id"));
 	StoreDAO dao = new StoreDAO();
-	Store store = dao.storeContent();
+	Store store = dao.storeContent(store_id);
 	
 	pageContext.setAttribute("store", store);
-	
+	System.out.print(store_id);
 	
 %>
 	<div>
 		<table width = 500px height = 150px border = 2px solid black>
 		
 			<tr>
-				<td>${store.store_img}</td>
+				<td><%= store.getStore_img() %><%-- ${store.store_img} --%></td> 
 				<td></td>
 			
 				
