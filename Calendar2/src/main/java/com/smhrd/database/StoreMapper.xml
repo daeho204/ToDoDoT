@@ -14,5 +14,14 @@
    select * from TB_STORE where STORE_ID = #{idx}
    </select>
 	
+	<insert id="menuadd" parameterType="Menu">
+		insert into menu (menu_id,menu_name,menu_descript,menu_price,menu_img)
+		values(SEQ_MENU_ID.NEXTVAL,#{menu_name},#{menu_descript},#{menu_price},#{menu_img})
+
+	</insert>
+	
+	<select id="menuprint" parameterType="int" resultType="Menu">
+		select * from menu where menu_id=#{idx}
+	</select>
 	
 </mapper>
