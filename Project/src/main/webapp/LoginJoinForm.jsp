@@ -109,7 +109,7 @@
 	</div>
 
 	<!-- LoginJoinForm.js 적용 -->
-	<script type="text/javascript" src="js/LoginJoinForm.js"></script>
+	<script type="text/javascript" src="LoginJoinForm.js"></script>
 	<script>
     	
     </script>

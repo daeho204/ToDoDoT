@@ -72,10 +72,10 @@
 							<div class="collapse navbar-collapse" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto" style="margin-top: 5px">
 									<li class="nav-item "><a class="nav-link"
-										href="index.html">Home</a></li>
-									<li class="nav-item"><a class="nav-link" href="about.html">MyPage</a></li>
+										href="index.jsp">Home</a></li>
+									<li class="nav-item"><a class="nav-link" href="about.jsp">MyPage</a></li>
 									<li class="nav-item active"><a class="nav-link"
-										href="MyStore.html">MyStore</a></li>
+										href="MyStore.jsp">MyStore</a></li>
 									<li class="nav-item"><a class="nav-link" href="we-do.html">What
 											we do</a></li>
 									<li class="nav-item"><a class="nav-link"
