@@ -8,6 +8,7 @@
  	<typeAliases>
 		<typeAlias type="com.smhrd.model.Store" alias="Store"/>
 		<typeAlias type="com.smhrd.model.Menu" alias="Menu"/>
+		<typeAlias type="com.smhrd.model.Fav" alias="Fav"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -22,8 +23,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- <mapper resource="com/smhrd/database/Mapper.xml" />
-		<mapper resource="com/smhrd/database/BoardMapper.xml" /> -->
 		<mapper resource="com/smhrd/database/CalendarMapper.xml" />
 		<mapper resource="com/smhrd/database/StoreMapper.xml" />
 	</mappers>
