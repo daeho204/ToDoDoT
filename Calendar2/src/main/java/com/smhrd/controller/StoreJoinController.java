@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.smhrd.model.Board;
-import com.smhrd.model.BoardDAO;
+
 import com.smhrd.model.Store;
 import com.smhrd.model.StoreDAO;
 

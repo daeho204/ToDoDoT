@@ -1,13 +1,12 @@
 package com.smhrd.model;
 
-import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Store {
-	private BigDecimal Store_id;
+	private String Store_id;
 	private int User_bnum;
 	private String Store_name;
 	private String Store_address;
@@ -15,10 +14,9 @@ public class Store {
 	private String Store_descript;
 	private String Store_img;
 
-	public Store(BigDecimal Store_id, int User_bnum, String Store_name, String Store_address, String Store_contact, String 
+	public Store(String Store_id, String Store_name, String Store_address, String Store_contact, String 
 			Store_descript, String Store_img) {
 		this.Store_id = Store_id;
-		this.User_bnum = User_bnum;
 		this.Store_name = Store_name;
 		this.Store_address = Store_address;
 		this.Store_contact = Store_contact;
@@ -27,13 +25,7 @@ public class Store {
 
 	}
 	
-	public Store(BigDecimal Store_id, String Store_name, String Store_address, String Store_contact) {
-		this.Store_id = Store_id;
-		this.Store_name = Store_name;
-		this.Store_address = Store_address;
-		this.Store_contact = Store_contact;
-
-	}
+	
 
 	public Store(String Store_name, String Store_address, String Store_contact, String Store_img) {
 
@@ -52,11 +44,11 @@ public class Store {
 
 	}
 
-	public BigDecimal getStore_id() {
+	public String getStore_id() {
 		return Store_id;
 	}
 
-	public void setStore_id(BigDecimal store_id) {
+	public void setStore_id(String store_id) {
 		Store_id = store_id;
 	}
 
