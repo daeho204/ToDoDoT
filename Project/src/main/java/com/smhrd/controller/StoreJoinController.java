@@ -38,7 +38,7 @@ public class StoreJoinController extends HttpServlet {
 
       Store store = new Store(store_name,store_address,store_contact, store_img);
       StoreDAO dao = new StoreDAO();
-      int res = dao.join(store);
+      int res = dao.storejoin(store);
       
       System.out.println(res);
       

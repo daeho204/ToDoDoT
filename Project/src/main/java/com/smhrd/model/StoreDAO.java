@@ -32,13 +32,13 @@ public class StoreDAO {
 		return store;
 		
 	}
-	public int join(Store store) {
-	      SqlSession sqlSession = sessionFactory.openSession(true);
-	      int res = sqlSession.insert("com.smhrd.database.StoreMapper.join", store);
-	      // 자원 반납까지 마무리
-	      sqlSession.close();
-	      return res;
-	   }
+	public int storejoin(Store store) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int res = sqlSession.insert("com.smhrd.database.StoreMapper.join", store);
+		// 자원 반납까지 마무리
+		sqlSession.close();
+		return res;
+	}
 	
 	public Store storeContent(String store_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
