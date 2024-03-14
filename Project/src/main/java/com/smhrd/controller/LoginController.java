@@ -28,6 +28,8 @@ public class LoginController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", result); // 서버에 세션 생성해 저장한다.
 			// 세션은 서버에 있어서 클라이언트(웹사이트)에서 확인할 수 없다.
+			//로그인 성공하면 isbusiness값 들고오기
+			session.setAttribute("session", member.getIsbusiness());
 			response.sendRedirect("index.jsp");
 		} else {
 			System.out.println("로그인 실패");
