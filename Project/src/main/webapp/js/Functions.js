@@ -4,7 +4,12 @@ function chat() {
 		"width=640, height=800")
 }
 function LoginJoin() {
-	location.href = "http://localhost:8081/tododot/LoginJoinForm.html"
+	if(window.sessionStorage.getItem("member") == null) {
+		location.href = "LoginJoinForm.jsp";
+	} else{
+		location.href = "index.jsp";
+	}
+	
 }
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
