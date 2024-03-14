@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+* {
+	font-family: 마비옛체;
+}
+
+.storeDesc {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.storeDesc:has(+ .card-content__more-btn:checked) {
+  -webkit-line-clamp:unset
+}
+.card-content__more-btn {
+  appearance: none;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  margin: 1rem;
+  position: relative;
+  left: -15px;
+}
+.card-content__more-btn::before{
+	content: '더보기';
+}
+.card-content__more-btn:checked::before{
+	content: '닫기';
+}
+.banner_main::before {
+	position: relative;
+	content: "";
+	width: 370px;
+	height: 764px;
+	left: 0;
+}
+
+.storeMain {
+	background-image: linear-gradient(to right, mistyrose, white);
+}
+
+.banner1 {
+	background-image: linear-gradient(to right, mistyrose, white);
+	position: relative;
+	padding: 50px 0 50px 0;
+}
+
+.relative {
+	position: relative;
+	padding: 0;
+	text-align: center;
+}
+
+.relative span {
+	color: #ddd;
+}
+
+.bann_desc {
+	color: hotpink !important;
+}
+
+.relative h1 {
+	font-size: 74px;
+	line-height: 80px;
+	font-weight: 500;
+	color: #2e2d2d;
+}
+
+.relative p {
+	color: #2e2d2d;
+	padding-bottom: 70px;
+}
+
+.get_btn {
+	background-color: #2e2d2d;
+	color: #fff;
+	text-align: center;
+	max-width: 216px;
+	width: 100%;
+	height: 40px;
+	font-size: 17px;
+	display: block;
+	padding: 4px 0;
+}
+
+.get_btn:hover {
+	color: #fa8c17;
+}
+
+.bann_img {
+	/* padding-left: 150px;
+	padding-right: 20px; */
+	height: 500px;
+	/* mask-image: linear-gradient(to right, rgba(0, 0, 0, 1.0) 0%, transparent 100%);
+     border-bottom-left-radius: 150px;
+	 border-top-left-radius: 150px;
+     border-top-right-radius: 50px;
+     border-bottom-right-radius: 50px; */
+}
+
+#myCarousel .carousel-control-prev {
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+	width: 55px;
+	height: 55px;
+	background: black;
+	font-size: 20px;
+	color: white;
+	top: 45%;
+}
+
+#myCarousel .carousel-control-next {
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+	width: 55px;
+	height: 55px;
+	background: black;
+	font-size: 20px;
+	color: white;
+	top: 45%;
+}
+
+#myCarousel .carousel-control-prev:hover, #myCarousel .carousel-control-next:hover,
+	#myCarousel .carousel-control-prev:focus, #myCarousel .carousel-control-next:focus
+	{
+	background: lavenderblush;
+	color: #2e2d2d;
+}
+
+#myCarousel .carousel-control-prev {
+	
+}
+
+#myCarousel .carousel-control-next {
+	
+}
+
+.banner .carousel-indicators li {
+	width: 20px;
+	height: 20px;
+	border-radius: 30px;
+	background: #000;
+}
+
+.carousel-indicators {
+	display: none;
+}
+
+.storeContainer {
+	width: 500px;
+	margin: 0 auto;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current {
+	background-color: lightpink;
+	color: #222;
+}
+
+.tab-content {
+	display: none;
+	background-color: lightpink;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+.storeImg{
+	width:100px;
+	height:100px;
+}
+.menuTd{
+	padding-bottom:10px
+}
+.menuReservation{
+	text-align:right;
+}
+.reserveBtn{
+	background-color:black;
+	color:white;
+}
