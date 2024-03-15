@@ -21,9 +21,7 @@
    </select>
 
    
-   <!-- 가게 하나만 들고오기 -->
-   <select id="getOne" parameterType = "com.smhrd.model.Store" resultType = "com.smhrd.model.Store">
-   select * from TB_STORE
+   
 
    <!-- 로그인후, 본인 가게정보 들고오기 -->
     <select id="owncontent"  parameterType="string" resultType = "com.smhrd.model.Store">

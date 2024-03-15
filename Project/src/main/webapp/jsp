@@ -1,12 +1,9 @@
-<%@page import="com.smhrd.converter.ImageToBase64"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
-<%@page import="java.io.File"%>
 <%@page import="com.smhrd.model.StoreDAO"%>
-<%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
@@ -35,44 +32,41 @@
 <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 <!-- Tweaks for older IEs-->
 <link rel="stylesheet"
-	href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-	media="screen">
+   href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+   media="screen">
 
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<%
-	Member member = (Member)session.getAttribute("member");
-%>
 <body class="main-layout">
 
-<%
-	StoreDAO dao = new StoreDAO();
-	List<Store> list = dao.StoreList();
+   <%
+   StoreDAO dao = new StoreDAO();
+   List<Store> list = dao.StoreList();
 
-	pageContext.setAttribute("list", list);
-	
-	for(Store store:list){
-		//System.out.print("확인용 : " + (store.getStore_img() instanceof String));
-		//dao.storeContent(store.getStore_img());
-		System.out.print(" image path : " +store.getStore_img());
-		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
-				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\"
-				+ store.getStore_img());
-		ImageToBase64 converter = new ImageToBase64();
-		String fileStringValue = converter.convert(file);
-		System.out.println("파일의 값" + fileStringValue);
-		
-		store.setStore_img(fileStringValue);
-	}
-	%>
-	
+   pageContext.setAttribute("list", list);
+
+   for(Store store:list){
+    //System.out.print("확인용 : " + (store.getStore_img() instanceof String));
+    //dao.storeContent(store.getStore_img());
+    System.out.print(" image path : " +store.getStore_img());
+    File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+            + "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\"
+            + store.getStore_img());
+    ImageToBase64 converter = new ImageToBase64();
+    String fileStringValue = converter.convert(file);
+    System.out.println("파일의 값" + fileStringValue);
+    
+    store.setStore_img(fileStringValue);
+}
+   %>
+
    <!-- loader  -->
    <div class="loader_bg">
       <div class="loader">
@@ -187,7 +181,7 @@
    <div>
       <div>
         <% for(Store store:list) { %>
-         <%-- <c:forEach items="${list}" var="b" varStatus="status"> --%>
+         <c:forEach items="${list}" var="b" varStatus="status">
             <div class="slider">
                <div class="slide-container">
                   <swiper-container class="mySwiper"> <swiper-slide>
@@ -207,7 +201,7 @@
                            </h1> <span>★★★★★ 4.8</span>
                            <p style="color: black">11:00 ~ 21:00</p>
                            <p style="color: black">주소 : <%= store.getStore_address() %></p>
-                           <p style="color: black">연락처 : <%= store.getStore_contact() %></p>
+                           <p style="color: black">연락처 : <%= store.getStore_contact()</p>
                         </td>
                         <td style="width: 19%; text-align: center;">
                            <button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
@@ -216,7 +210,7 @@
                   </table>
                </div>
             </div>
-         <%-- </c:forEach> --%>
+         </c:forEach>
          <% } %>
       </div>
    </div>
