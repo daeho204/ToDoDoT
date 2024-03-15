@@ -44,7 +44,7 @@ public class Store {
 
 	}
 	
-	public Store( String Store_name, String Store_address, String Store_contact, String 
+	public Store(String Store_name, String Store_address, String Store_contact, String 
 			Store_descript, String Store_img) {
 		this.Store_name = Store_name;
 		this.Store_address = Store_address;

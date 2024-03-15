@@ -42,6 +42,8 @@
 <%
 Member member = (Member) session.getAttribute("member");
 System.out.print("bnum은" + member.getBnum());
+System.out.print("store은" + member.getBnum());
+
 
 /* HttpSession httpSession = request.getSession();
 String user_bnum = member.getBnum(); // 실제로는 세션에 저장될 사용자의 bnum 값
@@ -176,7 +178,7 @@ System.out.print(user_bnum); */
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">이미지 :</td>
 						<td class="storeInfoTableTd2" style="width: 65%"><input
-							type="file" name="img" class="storeInfoTableTd2" id="photo"
+							type="file" class="storeInfoTableTd2" id="photo"
 							name="store_img">
 					</tr>
 				</table>
