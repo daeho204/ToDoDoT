@@ -56,12 +56,13 @@ String user_bnum = member.getBnum(); // 실제로는 세션에 저장될 사용�
 session.setAttribute("user_bnum", user_bnum);
 System.out.print(user_bnum); */ 
 
+
 StoreDAO dao = new StoreDAO();
 Store store = dao.storeOwnContent(user_bnum);
 pageContext.setAttribute("store", store);
-
 String store_id = store.getStore_id();
 session.setAttribute("store_id",store_id);
+
 
 %>
 <body class="main-layout">
@@ -166,28 +167,28 @@ session.setAttribute("store_id",store_id);
 		enctype="multipart/form-data">
 		<div class="memInfoEdit">
 			<div style="width: 35%">
-				<h2 class="memInfoEditTitle">업체 등록</h2>
+				<h2 class="memInfoEditTitle">가게 정보 수정하기</h2>
 				<table class="memInfoTable" style="width: 100%;">
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">업체명 :</td>
 						<td class="storeInfoTableTd2" style="width: 65%"><input
 							class="storeInfoInput" type="text" name="store_name"
-							placeholder="업체명 등록"></td>
+							placeholder="<%=store.getStore_name()%>"></td>
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">업체 주소 :</td>
 						<td class="storeInfoTableTd2" style="width: 65%"><input
 							class="storeInfoInput" type="text" name="store_address"
-							placeholder="업체주소 등록"></td>
+							placeholder="<%=store.getStore_address()%>"></td>
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">연락처 :</td>
 						<td class="storeInfoTableTd2" style="width: 65%"><input
 							class="storeInfoInput" type="text" name="store_contact"
-							placeholder="연락처 등록"></td>
+							placeholder="<%=store.getStore_contact()%>"></td>
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">홍보문구 :</td>
 						<td class="storeInfoTableTd2" style="width: 65%"><input
 							class="storeInfoInput" type="text" name="store_descript"
-							placeholder="홍보문구 등록"></td>
+							placeholder="<%=store.getStore_descript()%>"></td>
 					</tr>
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">이미지 :</td>
@@ -197,156 +198,56 @@ session.setAttribute("store_id",store_id);
 					</tr>
 				</table>
 				<div class="memInfoBtn">
-					<button type="submit" class="memInfoUpdateBtn">등록하기</button>
+					<button type="submit" class="memInfoUpdateBtn">수정하기</button>
 				</div>
 			</div>
 		</div>
 	</form>
 	<!-- 가게등록 끝 -->
-	<!-- 가게정보수정 시작 -->
-	<form action="MystoreUpdate.jsp" method="post" id="menuForm">
-	<div class="memInfoEdit">
-		<div style="width: 50%">
-			<h2 class="memInfoEditTitle">업체 정보</h2>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="favoriteImg" rowspan="8" style="width: 30%"><img
-						style="width: 200px" src="images/nailartshop1.jpg"></td>
-					<td class="memInfoTableTd" style="width: 15%">업체명</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_name()%></td>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">영업시간</td>
-					<td class="memInfoTableTd" style="width: 39%">10:00 ~ 18:00</td>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">업체주소</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_address()%></td>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_contact()%></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">홍보문구</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_descript()%></td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button type="submit" class="memInfoUpdateBtn">수정하기</button>
+	<!-- 메뉴등록시작 -->
+
+	<form action="StoreMenuController" method="post"
+		enctype="multipart/form-data" id="menuForm">
+		<div class="memInfoEdit">
+			<div style="width: 35%">
+				<h2 class="memInfoEditTitle">메뉴 등록</h2>
+				<div id="menuContainer">
+					<table class="memInfoTable" style="width: 100%;">
+						<tr class="memInfoTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 이름 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								class="storeInfoInput" type="text" name="menu_name"
+								placeholder="메뉴 이름 등록"></td>
+						</tr>
+						<tr class="memInfoTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 설명 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								class="storeInfoInput" type="text" name="menu_descript"
+								placeholder="메뉴 설명 등록"></td>
+						</tr>
+						<tr class="memInfoTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 가격 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								class="storeInfoInput" type="text" name="menu_price"
+								placeholder="메뉴 가격 등록"></td>
+						</tr>
+						<tr class="memInfoTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 이미지 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								type="file" class="storeInfoTableTd2" id="photo"
+								name="menu_img"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="memInfoBtn">
+						<button type="submit" class="memInfoUpdateBtn addMenuBtn">
+						저장하기</button>
+				</div>
 			</div>
 		</div>
-	</div>
 	</form>
-	<!-- 가게정보 수정 끝 -->
-	<!-- 예약관리 시작 -->
-	<div class="memInfoEdit">
-		<div style="width: 40%">
-			<h2 class="memInfoEditTitle">예약 관리</h2>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">고채린</td>
-					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart1.jpeg"></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">날짜</td>
-					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">수락</button>
-				<button class="memInfoUpdateBtn" onclick="">거절</button>
-			</div>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">정현석</td>
-					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart2.jpg"></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">날짜</td>
-					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">수락</button>
-				<button class="memInfoUpdateBtn" onclick="">거절</button>
-			</div>
-		</div>
-	</div>
-	<!-- 예약관리 끝 -->
-	<!-- 예약확인 시작 -->
-	<div class="memInfoEdit">
-		<div style="width: 40%">
-			<h2 class="memInfoEditTitle">예약 확인</h2>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">고채린</td>
-					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart1.jpeg"></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">날짜</td>
-					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">예약 취소</button>
-			</div>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">정현석</td>
-					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart2.jpg"></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">날짜</td>
-					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">예약 취소</button>
-			</div>
-		</div>
-	</div>
-	<!-- 찜목록 끝 -->
-	<div class="endImg">
-		<img src="images/slin.png">
-	</div>
+	<!-- 메뉴등록 끝 -->
+	<br><br>
 	<!--  footer -->
 	<footer>
 		<div class="footer">

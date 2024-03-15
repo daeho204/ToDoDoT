@@ -19,10 +19,16 @@
    select  Store_id, Store_name,  Store_address,  Store_contact,  
 			Store_descript,  Store_img from TB_STORE where STORE_ID=#{store_id}
    </select>
+
    
    <!-- 가게 하나만 들고오기 -->
    <select id="getOne" parameterType = "com.smhrd.model.Store" resultType = "com.smhrd.model.Store">
    select * from TB_STORE
+
+   <!-- 로그인후, 본인 가게정보 들고오기 -->
+    <select id="owncontent"  parameterType="string" resultType = "com.smhrd.model.Store">
+   select  * from TB_STORE where user_bnum=#{user_bnum}
+
    </select>
 	
 	<!-- favorite check -->
