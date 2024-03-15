@@ -124,8 +124,8 @@
 					<p>${store.store_address}</p>
 				</div>
 				<div>
-					<h4>SNS</h4>
-					<p>https://blog.naver.com</p>
+					<h4>채팅하기</h4>
+					<button style="background-color:black; color:white;" onclick="chat()">채팅하기</button>
 				</div>
 			</div>
 			<div id="tab-2" class="tab-content">
