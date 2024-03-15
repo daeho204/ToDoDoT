@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class Menu {
 	/* private String menu_id; */
+	
+	private String store_id;
 	private String menu_id;
 	private String menu_name;
 	private String menu_descript;
@@ -56,6 +58,14 @@ public class Menu {
 	}
 
 	public Menu(String menu_name, String menu_descript, int menu_price, String menu_img) {
+		this.menu_name = menu_name;
+		this.menu_descript = menu_descript;
+		this.menu_price = menu_price;
+		this.menu_img = menu_img;
+	}
+
+	public Menu(String store_id, String menu_name, String menu_descript, int menu_price, String menu_img) {
+		this.store_id = store_id;
 		this.menu_name = menu_name;
 		this.menu_descript = menu_descript;
 		this.menu_price = menu_price;

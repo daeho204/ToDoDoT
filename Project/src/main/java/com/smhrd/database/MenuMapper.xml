@@ -5,8 +5,8 @@
     
     <!-- 메뉴 입력하기 -->
 	<insert id="addmenu" parameterType="Menu">
-		insert into menu (menu_id,menu_name,menu_descript,menu_price,menu_img)
-		values(SEQ_MENU_ID.NEXTVAL,#{menu_name},#{menu_descript},#{menu_price},#{menu_img})
+		insert into menu (menu_id,store_id,menu_name,menu_descript,menu_price,menu_img)
+		values(SEQ_MENU_ID.NEXTVAL,#{store_id},#{menu_name},#{menu_descript},#{menu_price},#{menu_img})
 	</insert>
 	
 	<!-- 메뉴 출력하기 -->

@@ -19,6 +19,10 @@
    select  Store_id,  Store_name,  Store_address,  Store_contact,  
 			Store_descript,  Store_img from TB_STORE where STORE_ID=#{store_id}
    </select>
+   <!-- 로그인후, 본인 가게정보 들고오기 -->
+    <select id="owncontent"  parameterType="string" resultType = "com.smhrd.model.Store">
+   select  * from TB_STORE where user_bnum=#{user_bnum}
+   </select>
 	
 	<!-- favorite check -->
 	<insert id="FavCheck" parameterType="Fav">
