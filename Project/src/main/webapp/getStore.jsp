@@ -2,7 +2,6 @@
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.StoreDAO"%>
-<%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -45,18 +44,15 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<%
-	Member member = (Member)session.getAttribute("member");
-%>
 <body class="main-layout">
 
-<%
+	<%
 	StoreDAO dao = new StoreDAO();
 	List<Store> list = dao.StoreList();
 
 	pageContext.setAttribute("list", list);
 	%>
-	
+
 	<!-- loader  -->
 	<div class="loader_bg">
 		<div class="loader">
@@ -119,12 +115,12 @@
 							<div class="collapse navbar-collapse" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto" style="margin-top: 5px">
 									<li class="nav-item "><a class="nav-link"
-										href="index.jsp">Home</a></li>
-									<li class="nav-item"><a class="nav-link" href="about.jsp">MyPage</a></li>
+										href="index.html">Home</a></li>
+									<li class="nav-item"><a class="nav-link" href="about.html">MyPage</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="Mystore.jsp">MyStore</a></li>
+										href="MyStore.html">MyStore</a></li>
 									<li class="nav-item active"><a class="nav-link"
-										href="getStore.jsp">StoreList</a></li>
+										href="we-do.html">StoreList</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -135,25 +131,16 @@
 					</div>
 					<div class="col-md-2">
 						<ul class="social_icon">
-							<li>
-								<% if(member==null){ %>
-									<button class="loginBtn" onclick="location.href='LoginJoinForm.jsp'">로그인</button>
-									<%} else{%>
-									<form action="LogoutController">
-										<button class="logoutBtn">로그아웃</button>
-									</form>
-									<%} %>
+							<li><button onclick="LoginJoin()"
+									style="position: relative; color: white; background-color: black; padding-top: 5px; padding-right: 18px; padding-left: 16px; left: 140px; top: 10px;">로그인</button>
 								<div class="dropdown"
 									style="position: absolute; top: 10px; right: -50px;">
 									<button onclick="myFunction()" class="dropbtn">메뉴</button>
 									<div id="myDropdown" class="dropdown-content">
-									<% if(member==null){ %>
-									<%}else{ %>
 										<a>==마이페이지==</a> <a href="#home">회원정보수정</a> <a href="#about">예약확인</a>
-										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">가게등록</a>
-										<a href="#add">가게정보 수정</a> <a href="#add">예약 확인/수락</a> <a
+										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">업체등록</a>
+										<a href="#add">업체정보 수정</a> <a href="#add">예약 확인/수락</a> <a
 											href="#add">일정 확인</a>
-									<%} %>
 									</div>
 								</div></li>
 						</ul>
@@ -177,35 +164,39 @@
 		</div>
 	</div>
 	<!-- 이미지 슬라이드 시작 -->
-	<div class="slider">
-		<div class="slide-container">
-			<swiper-container class="mySwiper"> <swiper-slide>
-			<img src="images/nailartshop1.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop2.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop3.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop4.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop5.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop6.jpg"></swiper-container>
-			<table class="storeListTb">
-				<c:forEach items="${list}" var="b" varStatus="status">
-				<tr style="width: 100%">
-					<td style="width: 80%">
-						<h1 >
-							<a style="color: black" href="storeInfo.jsp?store_id=${b.store_id}" onclick="window.open(this.href,'_blank','width=600,height=1200');return false;">${b.store_name}</a>
-						</h1> <span>★★★★★ 4.8</span>
-						<p style="color: black">11:00 ~ 21:00</p>
-						<p style="color: black">주소 : ${b.store_address}</p>
-						<p style="color: black">연락처 : ${b.store_contact}</p>
-						
-					</td>
-					<td style="width: 19%; text-align: center;">
-						<button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
-					</td>
-				</tr>
-				</c:forEach>
-			</table>
+	<div>
+		<div>
+			<c:forEach items="${list}" var="b" varStatus="status">
+				<div class="slider">
+					<div class="slide-container">
+						<swiper-container class="mySwiper"> <swiper-slide>
+						<img src="images/nailartshop1.jpg"> </swiper-slide> <swiper-slide>
+						<img src="images/nailartshop2.jpg"> </swiper-slide> <swiper-slide>
+						<img src="images/nailartshop3.jpg"> </swiper-slide> <swiper-slide>
+						<img src="images/nailartshop4.jpg"> </swiper-slide> <swiper-slide>
+						<img src="images/nailartshop5.jpg"> </swiper-slide> <swiper-slide>
+						<img src="images/nailartshop6.jpg"></swiper-container>
+						<table class="storeListTb">
+							<tr style="width: 80%">
+								<td style="width: 80%">
+									<h1>
+										<a style="color: black"
+											href="storeInfo.jsp?store_id=${b.store_id}"
+											onclick="window.open(this.href,'_blank','width=600,height=1200');return false;">${b.store_name}</a>
+									</h1> <span>★★★★★ 4.8</span>
+									<p style="color: black">11:00 ~ 21:00</p>
+									<p style="color: black">주소 : ${b.store_address}</p>
+									<p style="color: black">연락처 : ${b.store_contact}</p>
+								</td>
+								<td style="width: 19%; text-align: center;">
+									<button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
-		
 	</div>
 	<!-- 이미지 슬라이드 끝 -->
 	<!--  footer -->
