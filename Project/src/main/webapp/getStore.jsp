@@ -1,6 +1,8 @@
+<%@page import="com.smhrd.converter.ImageToBase64"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
+<%@page import="java.io.File"%>
 <%@page import="com.smhrd.model.StoreDAO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -55,6 +57,20 @@
 	List<Store> list = dao.StoreList();
 
 	pageContext.setAttribute("list", list);
+	
+	for(Store store:list){
+		//System.out.print("확인용 : " + (store.getStore_img() instanceof String));
+		//dao.storeContent(store.getStore_img());
+		System.out.print(" image path : " +store.getStore_img());
+		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\"
+				+ store.getStore_img());
+		ImageToBase64 converter = new ImageToBase64();
+		String fileStringValue = converter.convert(file);
+		System.out.println("파일의 값" + fileStringValue);
+		
+		store.setStore_img(fileStringValue);
+	}
 	%>
 	
 	<!-- loader  -->
@@ -63,6 +79,7 @@
 			<img src="images/loading.gif" alt="#" />
 		</div>
 	</div>
+	
 
 	<!-- end loader -->
 	<!-- 검색창 -->
@@ -186,10 +203,31 @@
 			<img src="images/nailartshop4.jpg"> </swiper-slide> <swiper-slide>
 			<img src="images/nailartshop5.jpg"> </swiper-slide> <swiper-slide>
 			<img src="images/nailartshop6.jpg"></swiper-container>
+			<div>
+	 		
+			</div>
 			<table class="storeListTb">
-				<c:forEach items="${list}" var="b" varStatus="status">
+				<%-- <c:forEach items="${list}" var="b" varStatus="status"> --%>
+				<% for(Store store:list) { %>
 				<tr style="width: 100%">
+					<td>
+					<img src="data:image/jpg;base64,<%= store.getStore_img() %>" alt="이미지" style = "width:100px; height:100px" />
+					</td>
 					<td style="width: 80%">
+						<h1 >
+							<a style="color: black" href="storeInfo.jsp?store_id=${b.store_id}" onclick="window.open(this.href,'_blank','width=600,height=1200');return false;">${b.store_name}</a>
+						</h1> <span>★★★★★ 4.8</span>
+						<p style="color: black">11:00 ~ 21:00</p>
+						<p style="color: black">주소 : </p> <%= store.getStore_address() %>
+						<p style="color: black">연락처 : </p> <%= store.getStore_contact() %>
+						
+					</td>
+						
+        				
+        				
+    					
+					
+					 <%-- <td style="width: 80%">
 						<h1 >
 							<a style="color: black" href="storeInfo.jsp?store_id=${b.store_id}" onclick="window.open(this.href,'_blank','width=600,height=1200');return false;">${b.store_name}</a>
 						</h1> <span>★★★★★ 4.8</span>
@@ -197,12 +235,13 @@
 						<p style="color: black">주소 : ${b.store_address}</p>
 						<p style="color: black">연락처 : ${b.store_contact}</p>
 						
-					</td>
+					</td> --%>
 					<td style="width: 19%; text-align: center;">
 						<button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
 					</td>
 				</tr>
-				</c:forEach>
+				<% } %>
+				<%--</c:forEach> --%>
 			</table>
 		</div>
 		

@@ -47,7 +47,7 @@ public class StoreJoinController extends HttpServlet {
 		System.out.println(res);
 
 		if (res > 0) {
-			
+		
 			response.sendRedirect("Mystore.jsp");
 		} else {
 			response.sendRedirect("index.jsp");
