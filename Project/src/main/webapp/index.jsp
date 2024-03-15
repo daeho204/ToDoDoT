@@ -78,7 +78,7 @@
 					<option value="seocho">서초동</option>
 					<option value="jamwon">잠원동</option>
 					<option value="banpo">반포동</option>
-					<option value="bangbae">방패동</option>
+					<option value="bangbae">방배동</option>
 					<option value="dogok">도곡동</option>
 					<option value="yangje">양재동</option>
 					<option value="womeon">우면동</option>
