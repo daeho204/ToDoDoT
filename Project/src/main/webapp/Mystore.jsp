@@ -235,7 +235,7 @@ session.setAttribute("store_id",store_id);
 		</div>
 	</div>
 	</form>
-	<!-- 가게정보 수정 끝 -->
+	<!-- 가게정보 수정 끝 --> 
 	<!-- 예약관리 시작 -->
 	<div class="memInfoEdit">
 		<div style="width: 40%">
