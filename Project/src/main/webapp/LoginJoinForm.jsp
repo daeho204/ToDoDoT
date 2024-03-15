@@ -49,7 +49,7 @@
 					<input type="text" id="input" placeholder="아이디" name="id">
 					<div>
 						<!-- <button id="check" onclick="idCheck()">ID중복체크</button> -->
-						<input id="check" type="button" value="ID중복체크" onclick="idCheck()">
+						<input style="padding:8px;" id="check" type="button" value="ID중복체크" onclick="idCheck()">
 						<span id="id_ok"></span>
 						<span id="id_already"></span>
 					</div>
