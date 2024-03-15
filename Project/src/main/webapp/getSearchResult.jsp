@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
@@ -47,6 +48,7 @@
 <body class="main-layout">
 
 	<%
+	Member member = (Member)session.getAttribute("member");
 	request.setCharacterEncoding("UTF-8");
 	String store_address = request.getParameter("search");
 	StoreDAO dao = new StoreDAO();

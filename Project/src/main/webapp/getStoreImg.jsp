@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
@@ -20,7 +21,7 @@
 </head>
 <body>
 	<%	
-	
+	Member member = (Member)session.getAttribute("member");
 	String store_id = request.getParameter("store_id");
 	StoreDAO dao = new StoreDAO();
 	Store store = dao.storeContent(store_id);

@@ -2,21 +2,23 @@ package com.smhrd.model;
 
 
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Store {
 	private String Store_id;
-	private int User_bnum;
+	private String User_bnum;
 	private String Store_name;
 	private String Store_address;
 	private String Store_contact;
 	private String Store_descript;
 	private String Store_img;
-
-	public Store(String Store_id, String Store_name, String Store_address, String Store_contact, String 
+	
+	
+	public Store(String User_bnum, String Store_name, String Store_address, String Store_contact, String 
 			Store_descript, String Store_img) {
-		this.Store_id = Store_id;
+		this.User_bnum = User_bnum;
 		this.Store_name = Store_name;
 		this.Store_address = Store_address;
 		this.Store_contact = Store_contact;
@@ -24,6 +26,16 @@ public class Store {
 		this.Store_img = Store_img;
 
 	}
+//	public Store(String Store_id, String Store_name, String Store_address, String Store_contact, String 
+//			Store_descript, String Store_img) {
+//		this.Store_id = Store_id;
+//		this.Store_name = Store_name;
+//		this.Store_address = Store_address;
+//		this.Store_contact = Store_contact;
+//		this.Store_descript = Store_descript;
+//		this.Store_img = Store_img;
+//
+//	}
 	
 	
 
@@ -61,11 +73,11 @@ public class Store {
 		Store_id = store_id;
 	}
 
-	public int getUser_bnum() {
+	public String getUser_bnum() {
 		return User_bnum;
 	}
 
-	public void setUser_bnum(int user_bnum) {
+	public void setUser_bnum(String user_bnum) {
 		User_bnum = user_bnum;
 	}
 

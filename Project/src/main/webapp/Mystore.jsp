@@ -41,8 +41,10 @@
 </head>
 <%
 Member member = (Member) session.getAttribute("member");
-System.out.print("bnum은" + member.getBnum());
-System.out.print("store은" + member.getBnum());
+String user_bnum = member.getBnum();
+session.setAttribute("user_bnum", user_bnum);
+System.out.print(user_bnum);
+
 
 
 /* HttpSession httpSession = request.getSession();
