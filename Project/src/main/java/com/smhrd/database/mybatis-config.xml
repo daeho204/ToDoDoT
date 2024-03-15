@@ -27,6 +27,7 @@
 	<mappers>
 		<mapper resource="com/smhrd/database/CalendarMapper.xml" />
 		<mapper resource="com/smhrd/database/StoreMapper.xml" />
+		<mapper resource="com/smhrd/database/MenuMapper.xml" />
 		<mapper resource="com/smhrd/database/MemberMapper.xml" />
 		
 	</mappers>

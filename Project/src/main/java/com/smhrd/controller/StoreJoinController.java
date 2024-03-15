@@ -22,7 +22,7 @@ public class StoreJoinController extends HttpServlet {
          throws ServletException, IOException {
       request.setCharacterEncoding("UTF-8");
       
-		String savePath = request.getServletContext().getRealPath("/upload");
+		String savePath = request.getServletContext().getRealPath("/images");
 		int sizeLimit = 5 * 1024 * 1024; // 5MB 제한
 
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8",

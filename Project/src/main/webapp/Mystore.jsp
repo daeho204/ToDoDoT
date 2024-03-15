@@ -187,6 +187,50 @@ System.out.print(user_bnum); */
 		</div>
 	</form>
 	<!-- 가게등록 끝 -->
+	<!-- 메뉴등록시작 -->
+
+	<form action="StoreMenuController" method="post"
+		enctype="multipart/form-data" id="menuForm">
+		<div class="memInfoEdit">
+			<div style="width: 35%">
+				<h2 class="memInfoEditTitle">메뉴 등록</h2>
+				<div id="menuContainer">
+					<table class="memuTable" style="width: 100%;">
+						<tr class="memInfoTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 이름 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								class="storeInfoInput" type="text" name="menu_name"
+								placeholder="메뉴 이름 등록"></td>
+						</tr>
+						<tr class="memuTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 설명 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								class="storeInfoInput" type="text" name="menu_descript"
+								placeholder="메뉴 설명 등록"></td>
+						</tr>
+						<tr class="memuTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 가격 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								class="storeInfoInput" type="text" name="menu_price"
+								placeholder="메뉴 가격 등록"></td>
+						</tr>
+						<tr class="memuTableTr" style="width: 100%">
+							<td class="storeInfoTableTd1" style="width: 35%">메뉴 이미지 :</td>
+							<td class="storeInfoTableTd2" style="width: 65%"><input
+								type="file" class="storeInfoTableTd2" id="photo"
+								name="menu_img"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="memInfoBtn">
+						<button type="submit" class="memInfoUpdateBtn addMenuBtn">
+						저장하기</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<!-- 메뉴등록 끝 -->
 	<!-- 가게정보수정 시작 -->
 	<div class="memInfoEdit">
 		<div style="width: 50%">
