@@ -51,7 +51,8 @@
 <body class="main-layout">
 	<%
 		Member member = (Member)session.getAttribute("member");
-		System.out.print(member);
+		
+		
 		// 다운캐스팅
 		// 세션에 저장한 result는 원래 Member타입의 객체이지만
 		// 세션에서 가져올때 세션 타입의 객체 형태이다. 세션이 더 높은 타입이기에

@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@page import="com.smhrd.model.MenuDAO"%>
 <%@page import="com.smhrd.model.Menu"%>
@@ -39,10 +40,16 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <%
-	Member member = (Member)session.getAttribute("member");
+Member member = (Member) session.getAttribute("member");
+System.out.print("bnum은" + member.getBnum());
+
+/* HttpSession httpSession = request.getSession();
+String user_bnum = member.getBnum(); // 실제로는 세션에 저장될 사용자의 bnum 값
+session.setAttribute("user_bnum", user_bnum);
+System.out.print(user_bnum); */ 
 %>
 <body class="main-layout">
-<!-- loader  -->
+	<!-- loader  -->
 	<div class="loader_bg">
 		<div class="loader">
 			<img src="images/loading.gif" alt="#" />
@@ -74,12 +81,12 @@
 							</button>
 							<div class="collapse navbar-collapse" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto" style="margin-top: 5px">
-									<li class="nav-item "><a class="nav-link"
-										href="index.jsp">Home</a></li>
+									<li class="nav-item "><a class="nav-link" href="index.jsp">Home</a></li>
 									<li class="nav-item"><a class="nav-link" href="about.jsp">MyPage</a></li>
 									<li class="nav-item active"><a class="nav-link"
 										href="MyStore.jsp">MyStore</a></li>
-									<li class="nav-item"><a class="nav-link" href="getStore.jsp">StoreList</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="getStore.jsp">StoreList</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -91,26 +98,37 @@
 					<div class="col-md-2">
 						<ul class="social_icon">
 							<li>
-								<% if(member==null){ %>
-									<button class="loginBtn" onclick="LoginJoin()">로그인</button>
-									<%} else{%>
-									<form action="LogoutController">
-										<button class="logoutBtn">로그아웃</button>
-									</form>
-									<%} %>
+								<%
+								if (member == null) {
+								%>
+								<button class="loginBtn" onclick="LoginJoin()">로그인</button> <%
+ } else {
+ %>
+								<form action="LogoutController">
+									<button class="logoutBtn">로그아웃</button>
+								</form> <%
+ }
+ %>
 								<div class="dropdown"
 									style="position: absolute; top: 10px; right: -50px;">
 									<button onclick="myFunction()" class="dropbtn">메뉴</button>
 									<div id="myDropdown" class="dropdown-content">
-									<% if(member==null){ %>
-									<%}else{ %>
+										<%
+										if (member == null) {
+										%>
+										<%
+										} else {
+										%>
 										<a>==마이페이지==</a> <a href="#home">회원정보수정</a> <a href="#about">예약확인</a>
 										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">가게등록</a>
 										<a href="#add">가게정보 수정</a> <a href="#add">예약 확인/수락</a> <a
 											href="#add">일정 확인</a>
-									<%} %>
+										<%
+										}
+										%>
 									</div>
-								</div></li>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -132,32 +150,39 @@
 		</div>
 	</div>
 	<!-- 가게등록시작 -->
-<form action="StoreJoinController" method="post" enctype="multipart/form-data">
+	<form action="StoreJoinController" method="post"
+		enctype="multipart/form-data">
 		<div class="memInfoEdit">
 			<div style="width: 35%">
 				<h2 class="memInfoEditTitle">업체 등록</h2>
 				<table class="memInfoTable" style="width: 100%;">
 					<tr class="memInfoTableTr" style="width: 100%">
-						<td class="storeInfoTableTd1" style="width: 35%">업체명 : </td>
-						<td class="storeInfoTableTd2" style="width: 65%">
-						<input class="storeInfoInput" type="text" name="store_name" placeholder="업체명 등록"></td>
+						<td class="storeInfoTableTd1" style="width: 35%">업체명 :</td>
+						<td class="storeInfoTableTd2" style="width: 65%"><input
+							class="storeInfoInput" type="text" name="store_name"
+							placeholder="업체명 등록"></td>
 					<tr class="memInfoTableTr" style="width: 100%">
-						<td class="storeInfoTableTd1" style="width: 35%">업체 주소 : </td>
-						<td class="storeInfoTableTd2" style="width: 65%">
-						<input class="storeInfoInput" type="text" name="store_address" placeholder="업체주소 등록"></td>
+						<td class="storeInfoTableTd1" style="width: 35%">업체 주소 :</td>
+						<td class="storeInfoTableTd2" style="width: 65%"><input
+							class="storeInfoInput" type="text" name="store_address"
+							placeholder="업체주소 등록"></td>
 					<tr class="memInfoTableTr" style="width: 100%">
-						<td class="storeInfoTableTd1" style="width: 35%">연락처 : </td>
-						<td class="storeInfoTableTd2" style="width: 65%">
-						<input class="storeInfoInput" type="text" name="store_contact" placeholder="연락처 등록"></td>
+						<td class="storeInfoTableTd1" style="width: 35%">연락처 :</td>
+						<td class="storeInfoTableTd2" style="width: 65%"><input
+							class="storeInfoInput" type="text" name="store_contact"
+							placeholder="연락처 등록"></td>
 					<tr class="memInfoTableTr" style="width: 100%">
-						<td class="storeInfoTableTd1" style="width: 35%">홍보문구 : </td>
-						<td class="storeInfoTableTd2" style="width: 65%">
-						<input class="storeInfoInput" type="text" name="store_descript" placeholder="홍보문구 등록"></td>
+						<td class="storeInfoTableTd1" style="width: 35%">홍보문구 :</td>
+						<td class="storeInfoTableTd2" style="width: 65%"><input
+							class="storeInfoInput" type="text" name="store_descript"
+							placeholder="홍보문구 등록"></td>
 					</tr>
 					<tr class="memInfoTableTr" style="width: 100%">
-						<td class="storeInfoTableTd1" style="width: 35%">이미지 : </td>
-						<td class="storeInfoTableTd2" style="width: 65%">
-						<input type="file" name="img" class="storeInfoTableTd2" id="photo"  name="store_img">					</tr>
+						<td class="storeInfoTableTd1" style="width: 35%">이미지 :</td>
+						<td class="storeInfoTableTd2" style="width: 65%"><input
+							type="file" name="img" class="storeInfoTableTd2" id="photo"
+							name="store_img">
+					</tr>
 				</table>
 				<div class="memInfoBtn">
 					<button type="submit" class="memInfoUpdateBtn">등록하기</button>
@@ -386,7 +411,7 @@
 	</script> -->
 </body>
 </html>
-	
 
-	
+
+
 
