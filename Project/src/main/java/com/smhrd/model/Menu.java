@@ -1,6 +1,5 @@
 package com.smhrd.model;
 
-import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,21 +7,13 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Menu {
-	private BigDecimal idx;
 	/* private String menu_id; */
 	private String menu_id;
 	private String menu_name;
 	private String menu_descript;
-	private String menu_price;
+	private int menu_price;
 	private String menu_img;
 
-	public BigDecimal getIdx() {
-		return idx;
-	}
-
-	public void setIdx(BigDecimal idx) {
-		this.idx = idx;
-	}
 
 	public String getMenu_id() {
 		return menu_id;
@@ -48,11 +39,11 @@ public class Menu {
 		this.menu_descript = menu_descript;
 	}
 
-	public String getMenu_price() {
+	public int getMenu_price() {
 		return menu_price;
 	}
 
-	public void setMenu_price(String menu_price) {
+	public void setMenu_price(int menu_price) {
 		this.menu_price = menu_price;
 	}
 
@@ -64,7 +55,7 @@ public class Menu {
 		this.menu_img = menu_img;
 	}
 
-	public Menu(String menu_name, String menu_descript, String menu_price, String menu_img) {
+	public Menu(String menu_name, String menu_descript, int menu_price, String menu_img) {
 		this.menu_name = menu_name;
 		this.menu_descript = menu_descript;
 		this.menu_price = menu_price;

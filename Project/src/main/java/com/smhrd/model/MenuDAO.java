@@ -12,16 +12,16 @@ import com.smhrd.database.SqlSessionManager;
 public class MenuDAO {
 	SqlSessionFactory sessionFactory = SqlSessionManager.getSqlSessionFactory();
 
-	public int Menuadd(Menu menu) {
+	public int addMenu(Menu menu) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		int res = sqlSession.insert("com.smhrd.database.StoreMapper.menuadd", menu);
+		int res = sqlSession.insert("com.smhrd.database.MenuMapper.addmenu", menu);
 		sqlSession.close();
 		return res;
 	}
 
 	public Menu mystoreContentMenu(String menu_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		Menu menu = sqlSession.selectOne("com.smhrd.database.StoreMapper.menuprint", menu_id);
+		Menu menu = sqlSession.selectOne("com.smhrd.database.MenuMapper.menuprint", menu_id);
 		sqlSession.close();
 
 		// img : 파일의 제목, 확장자 -> 지정한 경로에서 해당 파일을 가져와야 함
@@ -40,7 +40,7 @@ public class MenuDAO {
 	public List<Menu> StoreList() {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 
-		List<Menu> list = sqlSession.selectList("com.smhrd.database.StoreMapper.getMenu");
+		List<Menu> list = sqlSession.selectList("com.smhrd.database.MenuMapper.getMenu");
 		System.out.println(list);
 		sqlSession.close();
 

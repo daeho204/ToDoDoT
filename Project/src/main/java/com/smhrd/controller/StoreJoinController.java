@@ -18,9 +18,10 @@ import com.smhrd.model.StoreDAO;
 public class StoreJoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+   protected void service(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
+      request.setCharacterEncoding("UTF-8");
+      
 
 		String savePath = request.getServletContext().getRealPath("/images");
 		int sizeLimit = 5 * 1024 * 1024; // 5MB 제한
