@@ -42,7 +42,7 @@ public class MenuDAO {
 	public List<Menu> MenuList(String store_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 
-		List<Menu> list = sqlSession.selectList("com.smhrd.database.MenuMapper.getMenu");
+		List<Menu> list = sqlSession.selectList("com.smhrd.database.MenuMapper.getMenu", store_id);
 		System.out.println(list);
 		sqlSession.close();
 

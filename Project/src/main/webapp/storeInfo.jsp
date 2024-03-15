@@ -57,11 +57,11 @@
 	MenuDAO da = new MenuDAO();
 	List<Menu> list = da.MenuList(store_id);
 	pageContext.setAttribute("list", list);
-	
+	/* 
 	// list의 몇번째
 	String menu_id = list.get(0).getMenu_id();
 	Menu menu = da.MenuContent(menu_id);
-	pageContext.setAttribute("store", store);
+	pageContext.setAttribute("store", store); */
 	
 	
 	%>
