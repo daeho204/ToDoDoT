@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.Menu"%>
+<%@page import="com.smhrd.model.MenuDAO"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
@@ -50,6 +52,18 @@
 	pageContext.setAttribute("store", store);
 	System.out.print(store_id);
 	System.out.print(store.getStore_img());
+	
+	// store_id 같은 menu만 list로
+	MenuDAO da = new MenuDAO();
+	List<Menu> list = da.MenuList(store_id);
+	pageContext.setAttribute("list", list);
+	
+	// list의 몇번째
+	String menu_id = list.get(0).getMenu_id();
+	Menu menu = da.MenuContent(menu_id);
+	pageContext.setAttribute("store", store);
+	
+	
 	%>
 	<section class="banner_main1">
 		<div id="myCarousel" class="carousel slide banner1"

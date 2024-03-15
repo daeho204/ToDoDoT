@@ -2,20 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.database.MenuMapper">
 
-    
-    <!-- 메뉴 입력하기 -->
+
+	<!-- 메뉴 입력하기 -->
 	<insert id="addmenu" parameterType="Menu">
-		insert into menu (menu_id,store_id,menu_name,menu_descript,menu_price,menu_img)
+		insert into menu
+		(menu_id,store_id,menu_name,menu_descript,menu_price,menu_img)
 		values(SEQ_MENU_ID.NEXTVAL,#{store_id},#{menu_name},#{menu_descript},#{menu_price},#{menu_img})
 	</insert>
-	
+
 	<!-- 메뉴 출력하기 -->
 	<select id="menuprint" parameterType="int" resultType="Menu">
-		select * from menu where menu_id=#{menu_id}
+		select *
+		from menu where menu_id=#{menu_id}
 	</select>
-	
+
 	<!-- 메뉴 가져오기 -->
 	<select id="getMenu" resultType="Menu">
-		select * from menu
+		select * from menu where store_id=#{store_id}
+	</select>
+
+	<!-- 메뉴 들고오기 -->
+	<select id="MenuContent" parameterType="string"
+		resultType="Menu">
+		select * from menu where menu_id=#{menu_id}
 	</select>
 </mapper>
