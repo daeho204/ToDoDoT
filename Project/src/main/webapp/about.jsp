@@ -80,8 +80,8 @@
 									<li class="nav-item active"><a class="nav-link"
 										href="about.html">MyPage</a></li>
 										<li class="nav-item"><a class="nav-link"
-										href="MyStore.html">MyStore</a></li>
-									<li class="nav-item"><a class="nav-link" href="we-do.html">StoreList</a></li>
+										href="Mystore.jsp">MyStore</a></li>
+									<li class="nav-item"><a class="nav-link" href="getStore.jsp">StoreList</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -93,22 +93,24 @@
 					<div class="col-md-2">
 						<ul class="social_icon">
 							<li>
-								<%if(member == null){ %>
-								<button onclick="LoginJoin()"
-									style="position: relative; color: white; background-color: black; padding-top: 5px; padding-right: 18px; padding-left: 16px; left: 140px; top: 10px;">로그인</button>
-								<%} else{ %>
+								<% if(member==null){ %>
+									<button class="loginBtn" onclick="LoginJoin()">로그인</button>
+									<%} else{%>
 									<form action="LogoutController">
-										<button style="position: relative; color: white; background-color: black; padding-top: 5px; padding-right: 18px; padding-left: 16px; left: 140px; top: 10px;">로그아웃</button>
+										<button class="logoutBtn">로그아웃</button>
 									</form>
-								<%} %>
+									<%} %>
 								<div class="dropdown"
 									style="position: absolute; top: 10px; right: -50px;">
 									<button onclick="myFunction()" class="dropbtn">메뉴</button>
 									<div id="myDropdown" class="dropdown-content">
+									<% if(member==null){ %>
+									<%}else{ %>
 										<a>==마이페이지==</a> <a href="#home">회원정보수정</a> <a href="#about">예약확인</a>
-										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">업체등록</a>
-										<a href="#add">업체정보 수정</a> <a href="#add">예약 확인/수락</a> <a
+										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">가게등록</a>
+										<a href="#add">가게정보 수정</a> <a href="#add">예약 확인/수락</a> <a
 											href="#add">일정 확인</a>
+									<%} %>
 									</div>
 								</div></li>
 						</ul>
