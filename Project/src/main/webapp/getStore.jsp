@@ -213,7 +213,9 @@
                               <a style="color: black"
                                  href="storeInfo.jsp?store_id=${b.store_id}"
                                  onclick="window.open(this.href,'_blank','width=600,height=1200');return false;">${b.store_name}</a>
-                           </h1> <span>★★★★★ 4.8</span>
+                           </h1> 
+                           <h2> <%= store.getStore_name() %></h2>
+                           <span>★★★★★ 4.8</span>
                            <p style="color: black">11:00 ~ 21:00</p>
                            <p style="color: black">주소 : <%= store.getStore_address() %></p>
                            <p style="color: black">연락처 : <%= store.getStore_contact() %></p>
