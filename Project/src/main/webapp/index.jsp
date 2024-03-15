@@ -126,9 +126,20 @@
 										<li class="nav-item"><a class="nav-link" href="about.jsp">MyPage</a>
 										</li>
 									<%} %>
-									<li class="nav-item"><a class="nav-link"
-										href="Mystore.jsp">MyStore</a></li>
-									<li class="nav-item"><a class="nav-link" href="getStore.jsp">StoreList</a></li>
+									<%if(member==null){ %>
+										<li class="nav-item"><a class="nav-link" href="LoginJoinForm.jsp">MyStore</a>
+										</li>
+									<%}else{ %>
+										<li class="nav-item"><a class="nav-link" href="Mystore.jsp">MyStore</a>
+										</li>
+									<%} %>
+									<%if(member==null){ %>
+										<li class="nav-item"><a class="nav-link" href="LoginJoinForm.jsp">MyStore</a>
+										</li>
+									<%}else{ %>
+										<li class="nav-item"><a class="nav-link" href="getStore.jsp">StoreList</a>
+										</li>
+									<%} %>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -139,14 +150,12 @@
 					</div>
 					<div class="col-md-2">
 						<ul class="social_icon">
-							
 							<li>
 								<% if(member==null){ %>
-									<button onclick="LoginJoin()"
-									style="position: relative; color: white; background-color: black; padding-top: 5px; padding-right: 18px; padding-left: 16px; left: 140px; top: 10px;">로그인</button>
+									<button class="loginBtn" onclick="LoginJoin()">로그인</button>
 									<%} else{%>
 									<form action="LogoutController">
-										<button style="position: relative; color: white; background-color: black; padding-top: 5px; padding-right: 18px; padding-left: 16px; left: 140px; top: 10px;">로그아웃</button>
+										<button class="logoutBtn">로그아웃</button>
 									</form>
 									<%} %>
 								<div class="dropdown"
@@ -320,10 +329,5 @@
 			}
 		}
 	</script>
-</body>
-</html>
-
-
-
 </body>
 </html>

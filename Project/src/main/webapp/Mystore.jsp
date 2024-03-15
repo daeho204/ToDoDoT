@@ -1,4 +1,4 @@
-
+<%@page import="com.smhrd.model.Member"%>
 <%@page import="com.smhrd.model.MenuDAO"%>
 <%@page import="com.smhrd.model.Menu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -38,6 +38,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
+<%
+	Member member = (Member)session.getAttribute("member");
+%>
 <body class="main-layout">
 <!-- loader  -->
 	<div class="loader_bg">
@@ -76,8 +79,7 @@
 									<li class="nav-item"><a class="nav-link" href="about.jsp">MyPage</a></li>
 									<li class="nav-item active"><a class="nav-link"
 										href="MyStore.jsp">MyStore</a></li>
-									<li class="nav-item"><a class="nav-link" href="we-do.html">What
-											we do</a></li>
+									<li class="nav-item"><a class="nav-link" href="getStore.jsp">StoreList</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -88,16 +90,25 @@
 					</div>
 					<div class="col-md-2">
 						<ul class="social_icon">
-							<li><button onclick="LoginJoin()"
-									style="position: relative; color: white; background-color: black; padding-top: 5px; padding-right: 18px; padding-left: 16px; left: 140px; top: 10px;">로그인</button>
+							<li>
+								<% if(member==null){ %>
+									<button class="loginBtn" onclick="LoginJoin()">로그인</button>
+									<%} else{%>
+									<form action="LogoutController">
+										<button class="logoutBtn">로그아웃</button>
+									</form>
+									<%} %>
 								<div class="dropdown"
 									style="position: absolute; top: 10px; right: -50px;">
 									<button onclick="myFunction()" class="dropbtn">메뉴</button>
 									<div id="myDropdown" class="dropdown-content">
+									<% if(member==null){ %>
+									<%}else{ %>
 										<a>==마이페이지==</a> <a href="#home">회원정보수정</a> <a href="#about">예약확인</a>
 										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">가게등록</a>
 										<a href="#add">가게정보 수정</a> <a href="#add">예약 확인/수락</a> <a
 											href="#add">일정 확인</a>
+									<%} %>
 									</div>
 								</div></li>
 						</ul>

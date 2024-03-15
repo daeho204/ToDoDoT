@@ -50,8 +50,29 @@
 	font-family: 마비옛체
 }
 
+.loginBtn {
+	position: relative;
+	color: white;
+	background-color: black;
+	padding-top: 5px;
+	padding-right: 18px;
+	padding-left: 16px;
+	left: 140px;
+	top: 10px;
+}
+.logoutBtn {
+	position: relative;
+	color: white;
+	background-color: black;
+	padding-top: 5px;
+	padding-right: 18px;
+	padding-left: 16px;
+	left: 120px;
+	top: 10px;
+}
+
 .storeListDesc {
-	color:black;
+	color: black;
 }
 
 .slide-container {
