@@ -98,19 +98,6 @@ System.out.print(user_bnum); */
 					<div class="col-md-2">
 						<ul class="social_icon">
 							<li>
-<<<<<<< Updated upstream
-								<%
-								if (member == null) {
-								%>
-								<button class="loginBtn" onclick="LoginJoin()">로그인</button> <%
- } else {
- %>
-								<form action="LogoutController">
-									<button class="logoutBtn">로그아웃</button>
-								</form> <%
- }
- %>
-=======
 								<% if(member==null){ %>
 									<button class="loginBtn" onclick="location.href='LoginJoinForm.jsp'">로그인</button>
 									<%} else{%>
@@ -118,7 +105,6 @@ System.out.print(user_bnum); */
 										<button class="logoutBtn">로그아웃</button>
 									</form>
 									<%} %>
->>>>>>> Stashed changes
 								<div class="dropdown"
 									style="position: absolute; top: 10px; right: -50px;">
 									<button onclick="myFunction()" class="dropbtn">메뉴</button>
