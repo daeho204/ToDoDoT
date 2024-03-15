@@ -137,7 +137,7 @@
 						<ul class="social_icon">
 							<li>
 								<% if(member==null){ %>
-									<button class="loginBtn" onclick="LoginJoin()">로그인</button>
+									<button class="loginBtn" onclick="location.href='LoginJoinForm.jsp'">로그인</button>
 									<%} else{%>
 									<form action="LogoutController">
 										<button class="logoutBtn">로그아웃</button>
