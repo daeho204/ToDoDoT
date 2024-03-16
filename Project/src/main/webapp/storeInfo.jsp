@@ -52,7 +52,7 @@
 	pageContext.setAttribute("store", store);
 	System.out.print(store_id);
 	System.out.print(store.getStore_img());
-	
+
 	// store_id 같은 menu만 list로
 	MenuDAO da = new MenuDAO();
 	List<Menu> list = da.MenuList(store_id);
@@ -62,8 +62,6 @@
 	String menu_id = list.get(0).getMenu_id();
 	Menu menu = da.MenuContent(menu_id);
 	pageContext.setAttribute("store", store); */
-	
-	
 	%>
 	<section class="banner_main1">
 		<div id="myCarousel" class="carousel slide banner1"
@@ -76,7 +74,8 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div style="text-align: center;" class="container-fluid">
-						<img class="bann_img" src="data:image/jpg;base64, ${store.store_img}" alt="#" />
+						<img class="bann_img"
+							src="data:image/jpg;base64, ${store.store_img}" alt="#" />
 					</div>
 				</div>
 				<div class="carousel-item">
@@ -139,7 +138,8 @@
 				</div>
 				<div>
 					<h4>채팅하기</h4>
-					<button style="background-color:black; color:white;" onclick="chat()">채팅하기</button>
+					<button style="background-color: black; color: white;"
+						onclick="chat()">채팅하기</button>
 				</div>
 			</div>
 			<div id="tab-2" class="tab-content">
@@ -196,10 +196,11 @@
 					<p>billytm90</p>
 				</div>
 			</div>
-			<div id="tab-4" class="tab-content">
-				<div style="text-align: center;">
-					<img style="width: 480px;" src="images/map.png">
-				</div>
+			<div id="tab-4" class="tab-content" onclick="map.relayout()">
+					<div id="map" style="width: 100%; height: 400px;"></div>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5a4d674bf36909d1cf9d7e211bfad53"></script>
+					<h6>*지도가 제대로 로딩이 되지 않았다면 지도를 한번 클릭해주세요.</h6>
 			</div>
 		</div>
 	</section>
@@ -231,6 +232,14 @@
 				$("#" + tab_id).addClass('current');
 			});
 		});
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center : new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+			level : 3
+		//지도의 레벨(확대, 축소 정도)
+		};
+
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 	</script>
 </body>
 </html>
