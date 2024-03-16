@@ -1089,6 +1089,7 @@ button {
 
 /** footer **/
 .footer {
+	padding-bottom:3%;
 	background: #222222;
 	padding-top: 60px;
 	text-align: center;
