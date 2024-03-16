@@ -133,6 +133,8 @@ swiper-slide img {
 }
 
 .search1 {
+	position: relative;
+	top: -15px;
 	padding-top: 10px;
 	text-align: center;
 	width: 100%;

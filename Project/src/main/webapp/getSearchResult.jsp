@@ -109,11 +109,11 @@
 							<div class="collapse navbar-collapse" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto" style="margin-top: 5px">
 									<li class="nav-item "><a class="nav-link" href="index.jsp">Home</a></li>
-									<li class="nav-item"><a class="nav-link" href="about.html">MyPage</a></li>
+									<li class="nav-item"><a class="nav-link" href="about.jsp">MyPage</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="MyStore.jsp">MyStore</a></li>
+										href="Mystore.jsp">MyStore</a></li>
 									<li class="nav-item active"><a class="nav-link"
-										href="getStore.jsp">StoreList</a></li>
+										href="getStore.jsp]">StoreList</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
@@ -151,11 +151,39 @@
 				<div class="col-md-12">
 					<div class="title">
 						<h2 style="color: black;">검색 결과</h2>
+						<!-- 검색창 -->
+						<form action="getSearchResult.jsp" method="post">
+							<div class="search1">
+								<div class="search1">
+									<input class="searchInput" name="name" type="text"
+										placeholder="검색어 입력"> <img class="searchImg"
+										src="images/search.png"> <select name="address"
+										class="selectArea">
+										<!-- 이거 value를 그냥 한글로할지 영어로 할지는 나중에 생각해야될듯 -->
+										<option></option>
+										<option>서초동</option>
+										<option>잠원동</option>
+										<option>반포동</option>
+										<option>방배동</option>
+										<option>도곡동</option>
+										<option>양재동</option>
+										<option>우면동</option>
+										<option>원지동</option>
+										<option>염곡동</option>
+										<option>내곡동</option>
+										<option>신원동</option>
+									</select> <input class="selectDate" type="date" name="date"> <input
+										type="submit" value="검색하기" class="searchBtn">
+								</div>
+							</div>
+						</form>
+						<!-- 검색창 끝 -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- 이미지 슬라이드 시작 -->
 	<div>
 		<div>
@@ -167,8 +195,8 @@
 			<div class="slider">
 				<div class="slide-container">
 					<swiper-container class="mySwiper"> <swiper-slide>
-					<img src="data:image/jpg;base64,<%=store.getStore_img()%>">
-					</swiper-slide> <swiper-slide> <img src="images/nailartshop2.jpg">
+					<img src="data:image/jpg;base64,<%=store.getStore_img()%>"> </swiper-slide>
+					<swiper-slide> <img src="images/nailartshop2.jpg">
 					</swiper-slide> <swiper-slide> <img src="images/nailartshop3.jpg">
 					</swiper-slide> <swiper-slide> <img src="images/nailartshop4.jpg">
 					</swiper-slide> <swiper-slide> <img src="images/nailartshop5.jpg">
@@ -198,10 +226,14 @@
 				</div>
 			</div>
 
-			<%}%>
-			<%}%>
-			
-			
+			<%
+			}
+			%>
+			<%
+			}
+			%>
+
+
 		</div>
 	</div>
 	<!-- 이미지 슬라이드 끝 -->
