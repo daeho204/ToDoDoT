@@ -195,12 +195,38 @@
 					<p>
 					<p>billytm90</p>
 				</div>
+				<div>
+					<form>
+						<div>
+							<table style="width: 100%">
+								<tr>
+									<td style="width: 10%">메뉴 :</td>
+									<td><input style="width: 50%" type="text" name="menu"
+										placeholder='메뉴의 이름을 적어주세요.'></td>
+								</tr>
+								<tr>
+									<td>평점 :</td>
+									<td><input style="width: 50%" type="number"
+										name="review_star" placeholder='평점은 1~5에서 매겨주세요.'></td>
+								</tr>
+								<tr>
+									<td>리뷰 :</td>
+									<td><textarea style="width: 100%" rows="4" name="content"
+											placeholder='아름다운 세상을 위해 네티켓을 지켜주세요.'></textarea></td>
+								</tr>
+							</table>
+							<div style="text-align:right">
+								<button style="background:black;color:white" type="submit">리뷰 남기기</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 			<div id="tab-4" class="tab-content" onclick="map.relayout()">
-					<div id="map" style="width: 100%; height: 400px;"></div>
-					<script type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5a4d674bf36909d1cf9d7e211bfad53"></script>
-					<h6>*지도가 제대로 로딩이 되지 않았다면 지도를 한번 클릭해주세요.</h6>
+				<div id="map" style="width: 100%; height: 400px;"></div>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5a4d674bf36909d1cf9d7e211bfad53"></script>
+				<h6>*지도가 제대로 로딩이 되지 않았다면 지도를 한번 클릭해주세요.</h6>
 			</div>
 		</div>
 	</section>
