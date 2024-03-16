@@ -195,6 +195,7 @@
    <!-- 이미지 슬라이드 시작 -->
    <div>
       <div>
+      <!-- 가게의 이미지, 이름, 주소, 연락처 list에서 불러와서 출력 -->
         <% for(Store store:list) { %>
          <%-- <c:forEach items="${list}" var="b" varStatus="status"> --%>
             <div class="slider">

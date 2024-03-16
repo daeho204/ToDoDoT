@@ -78,7 +78,7 @@
 						<div class="full">
 							<div class="center-desk">
 								<div class="logo">
-									<a href="index.html"><img src="images/logo.png" alt="#" /></a>
+									<a href="index.jsp"><img src="images/logo.png" alt="#" /></a>
 								</div>
 							</div>
 						</div>
@@ -95,12 +95,12 @@
 							<div class="collapse navbar-collapse" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto" style="margin-top: 5px">
 									<li class="nav-item "><a class="nav-link"
-										href="index.html">Home</a></li>
+										href="index.jsp">Home</a></li>
 									<li class="nav-item"><a class="nav-link" href="about.html">MyPage</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="MyStore.html">MyStore</a></li>
+										href="MyStore.jsp">MyStore</a></li>
 									<li class="nav-item active"><a class="nav-link"
-										href="we-do.html">StoreList</a></li>
+										href="getStore.jsp">StoreList</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="pricing.html">Pricing</a></li>
 									<li class="nav-item"><a class="nav-link"
