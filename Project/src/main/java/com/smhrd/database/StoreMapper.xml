@@ -2,37 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.database.StoreMapper">
 
-<!--  처음 검색 창에서 검색하기 밑에 자동으로 출력 될 가게 리스트-->
+	<!-- 처음 검색 창에서 검색하기 밑에 자동으로 출력 될 가게 리스트 -->
 	<select id="getStore" resultType="com.smhrd.model.Store">
-		select * from tb_store 
+		select * from tb_store
 	</select>
-	
-	<!-- 가게 추가하기  -->
+
+	<!-- 가게 추가하기 -->
 	<insert id="join" parameterType="com.smhrd.model.Store">
-      insert into TB_STORE (STORE_ID, user_bnum, store_name,store_address,store_contact, store_descript, store_img)
-      values(SEQ_STORE_ID.NEXTVAL, #{user_bnum}, #{store_name},#{store_address},#{store_contact},#{store_descript}, #{store_img})
+		insert into TB_STORE (STORE_ID, user_bnum,
+		store_name,store_address,store_contact, store_descript, store_img)
+		values(SEQ_STORE_ID.NEXTVAL, #{user_bnum},
+		#{store_name},#{store_address},#{store_contact},#{store_descript},
+		#{store_img})
 
-   </insert>
-   
-   <!-- 검색 시, 가게정보 들고오기 -->
-  <select id="content"  parameterType="string" resultType = "com.smhrd.model.Store">
-   select  Store_id, Store_name,  Store_address,  Store_contact,  
-			Store_descript,  Store_img from TB_STORE where STORE_ID=#{store_id}
-   </select>
+	</insert>
 
-   
-   
+	<!-- 검색 시, 가게정보 들고오기 -->
+	<select id="content" parameterType="string"
+		resultType="com.smhrd.model.Store">
+		select Store_id, Store_name, Store_address, Store_contact,
+		Store_descript, Store_img from TB_STORE where STORE_ID=#{store_id}
+	</select>
 
-   <!-- 로그인후, 본인 가게정보 들고오기 -->
-    <select id="owncontent"  parameterType="string" resultType = "com.smhrd.model.Store">
-   select  * from TB_STORE where user_bnum=#{user_bnum}
 
-   </select>
-	
+
+
+	<!-- 로그인후, 본인 가게정보 들고오기 -->
+	<select id="owncontent" parameterType="string"
+		resultType="com.smhrd.model.Store">
+		select * from TB_STORE where user_bnum=#{user_bnum}
+
+	</select>
+
 	<!-- favorite check -->
 	<insert id="FavCheck" parameterType="Fav">
 		insert into favorite
 		values(#{user_id},#{store_id},#{Fav_check})
 	</insert>
-	
+
+	<!-- 가게 검색 -->
+	<select id="storeSearch" parameterType="string"
+		resultType="com.smhrd.model.Store">
+		select *from TB_STORE where store_name like '%#{name}%' and store_address like '%#{area}%'
+		union
+		select * from tb_store where store_name like '%#{name}%'
+		union all
+		select * from tb_store where store_address like '%#{area}%';
+	</select>
 </mapper>

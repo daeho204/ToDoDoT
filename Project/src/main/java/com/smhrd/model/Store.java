@@ -47,7 +47,11 @@ public class Store {
 		this.Store_img = Store_img;
 
 	}
-
+	
+	public Store(String Store_name, String Store_addresss) {
+		this.Store_name = Store_name;
+		this.Store_address = Store_addresss;
+	}
 	public Store(String Store_name, String Store_address, String Store_contact) {
 
 		this.Store_name = Store_name;

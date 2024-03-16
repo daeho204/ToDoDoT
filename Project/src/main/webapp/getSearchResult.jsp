@@ -52,7 +52,7 @@
 	request.setCharacterEncoding("UTF-8");
 	String store_address = request.getParameter("search");
 	StoreDAO dao = new StoreDAO();
-	List<Store> list = dao.StoreList();
+	List<Store> list = dao.SearchList();
 
 	pageContext.setAttribute("store_address", store_address);
 	pageContext.setAttribute("list", list);
@@ -144,40 +144,44 @@
 		</div>
 	</div>
 	<!-- 이미지 슬라이드 시작 -->
-	<div class="slider">
-		<div class="slide-container">
-			<swiper-container class="mySwiper"> <swiper-slide>
-			<img src="images/nailartshop1.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop2.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop3.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop4.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop5.jpg"> </swiper-slide> <swiper-slide>
-			<img src="images/nailartshop6.jpg"></swiper-container>
-			<table class="storeListTb">
-				<c:forEach items="${list}" var="b" varStatus="status">
-					<c:if test="${store_address eq b.store_address}">
-						<tr style="width: 100%">
-							<td style="width: 80%">
-								<h1>
-									<a style="color: black"
-										href="storeInfo.jsp?store_id=${b.store_id}"
-										onclick="window.open(this.href,'_blank','width=600,height=1200');return false;">${b.store_name}</a>
-								</h1> <span>★★★★★ 4.8</span>
-								<p style="color: black">11:00 ~ 21:00</p>
-								<p style="color: black">주소 : ${b.store_address}</p>
-								<p style="color: black">연락처 : ${b.store_contact}</p>
-
-							</td>
-							<td style="width: 19%; text-align: center;">
-								<button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
-							</td>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</table>
-		</div>
-
-	</div>
+	 <div>
+      <div>
+        <% for(Store store:list) { %>
+         <%-- <c:forEach items="${list}" var="b" varStatus="status"> --%>
+            <div class="slider">
+               <div class="slide-container">
+                  <swiper-container class="mySwiper"> <swiper-slide>
+                  <img src="data:image/jpg;base64,<%= store.getStore_img() %>"> </swiper-slide> <swiper-slide>
+                  <img src="images/nailartshop2.jpg"> </swiper-slide> <swiper-slide>
+                  <img src="images/nailartshop3.jpg"> </swiper-slide> <swiper-slide>
+                  <img src="images/nailartshop4.jpg"> </swiper-slide> <swiper-slide>
+                  <img src="images/nailartshop5.jpg"> </swiper-slide> <swiper-slide>
+                  <img src="images/nailartshop6.jpg"></swiper-container>
+                  <table class="storeListTb">
+                     <tr style="width: 80%">
+                        <td style="width: 80%">
+                           <h1>
+                            	
+                              <a style="color: black"
+                                 href="storeInfo.jsp?store_id=<%= store.getStore_id() %>"
+                                 onclick="window.open(this.href,'_blank','width=600,height=1200');return false;"><%= store.getStore_name() %></a>
+                           </h1> 
+                           <span>★★★★★ 4.8</span>
+                           <p style="color: black">11:00 ~ 21:00</p>
+                           <p style="color: black">주소 : <%= store.getStore_address() %></p>
+                           <p style="color: black">연락처 : <%= store.getStore_contact() %></p>
+                        </td>
+                        <td style="width: 19%; text-align: center;">
+                           <button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         <%-- </c:forEach> --%>
+         <% } %>
+      </div>
+   </div>
 	<!-- 이미지 슬라이드 끝 -->
 	<!--  footer -->
 	<footer>
