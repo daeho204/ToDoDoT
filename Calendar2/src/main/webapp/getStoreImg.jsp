@@ -55,6 +55,12 @@
 	System.out.print(store_id);
 	System.out.print(store.getStore_img());
 	
+	pageContext.setAttribute("store_address", store_address);
+	pageContext.setAttribute("store_name", store_name);
+	pageContext.setAttribute("list", list);
+	System.out.print(store_name);
+	System.out.print(store_address);
+	
 	
 	
 %>

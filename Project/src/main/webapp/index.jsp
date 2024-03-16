@@ -67,32 +67,7 @@
 		</div>
 	</div>
 	<!-- end loader -->
-	<!-- 검색창 -->
-	<form action="StoreListController" method="post">
-		<div class="search1">
-			<div class="search1">
-				<input class="searchInput" name="search" type="text"
-					placeholder="검색어 입력"> <img class="searchImg"
-					src="images/search.png"> <select name="area"
-					class="selectArea">
-					<!-- 이거 value를 그냥 한글로할지 영어로 할지는 나중에 생각해야될듯 -->
-					<option>서초동</option>
-					<option>잠원동</option>
-					<option>반포동</option>
-					<option>방배동</option>
-					<option>도곡동</option>
-					<option>양재동</option>
-					<option>우면동</option>
-					<option>원지동</option>
-					<option>염곡동</option>
-					<option>내곡동</option>
-					<option>신원동</option>
-				</select> <input class="selectDate" type="date" name="date"> <input
-					type="submit" value="검색하기" class="searchBtn">
-			</div>
-		</div>
-	</form>
-	<!-- 검색창 끝 -->
+
 	<!-- header -->
 	<header>
 		<!-- header inner -->

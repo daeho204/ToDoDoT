@@ -81,33 +81,7 @@
    </div>
 
    <!-- end loader -->
-   <!-- 검색창 -->
-   <form action="getSearchResult.jsp">
-      <div class="search1">
-         <div class="search1">
-            <input class="searchInput" name="search" type="text"
-               placeholder="검색어 입력"> <img class="searchImg"
-               src="images/search.png"> <select name="area"
-               class="selectArea">
-               <!-- 이거 value를 그냥 한글로할지 영어로 할지는 나중에 생각해야될듯 -->
-               <option>없음</option>
-               <option value="seocho">서초동</option>
-               <option value="jamwon">잠원동</option>
-               <option value="banpo">반포동</option>
-               <option value="bangbae">방배동</option>
-               <option value="dogok">도곡동</option>
-               <option value="yangje">양재동</option>
-               <option value="womeon">우면동</option>
-               <option value="wonji">원지동</option>
-               <option value="yeomgok">염곡동</option>
-               <option value="negok">내곡동</option>
-               <option value="shinwon">신원동</option>
-            </select> <input class="selectDate" type="date" name="date"> <input
-               type="submit" value="검색하기" class="searchBtn">
-         </div>
-      </div>
-   </form>
-   <!-- 검색창 끝 -->
+  
    <header>
       <!-- header inner -->
 
@@ -187,6 +161,32 @@
             <div class="col-md-12">
                <div class="title">
                   <h2 style="color: black;">가게 검색</h2>
+                  	<!-- 검색창 -->
+	<form action="getSearchResult.jsp" method="post">
+		<div class="search1">
+			<div class="search1">
+				<input class="searchInput" name="name" type="text"
+					placeholder="검색어 입력"> <img class="searchImg"
+					src="images/search.png"> <select name="address"
+					class="selectArea">
+					<!-- 이거 value를 그냥 한글로할지 영어로 할지는 나중에 생각해야될듯 -->
+					<option>서초동</option>
+					<option>잠원동</option>
+					<option>반포동</option>
+					<option>방배동</option>
+					<option>도곡동</option>
+					<option>양재동</option>
+					<option>우면동</option>
+					<option>원지동</option>
+					<option>염곡동</option>
+					<option>내곡동</option>
+					<option>신원동</option>
+				</select> <input class="selectDate" type="date" name="date"> <input
+					type="submit" value="검색하기" class="searchBtn">
+			</div>
+		</div>
+	</form>
+	<!-- 검색창 끝 -->
                </div>
             </div>
          </div>

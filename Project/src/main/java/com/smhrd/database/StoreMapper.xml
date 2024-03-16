@@ -43,10 +43,10 @@
 	<!-- 가게 검색 -->
 	<select id="storeSearch" parameterType="string"
 		resultType="com.smhrd.model.Store">
-		select *from TB_STORE where store_name like '%#{name}%' and store_address like '%#{area}%'
+		select *from TB_STORE where store_name like '%#{store_name}%' and store_address like '%#{store_address}%'
 		union
-		select * from tb_store where store_name like '%#{name}%'
+		select * from tb_store where store_name like '%#{store_name}%'
 		union all
-		select * from tb_store where store_address like '%#{area}%';
+		select * from tb_store where store_address like '%#{store_address}%';
 	</select>
 </mapper>

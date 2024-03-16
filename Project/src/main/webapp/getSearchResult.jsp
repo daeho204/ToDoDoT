@@ -1,5 +1,7 @@
 <%@page import="com.smhrd.model.Member"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="com.smhrd.converter.ImageToBase64"%>
+<%@page import="java.io.File"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.StoreDAO"%>
@@ -50,13 +52,28 @@
 	<%
 	Member member = (Member)session.getAttribute("member");
 	request.setCharacterEncoding("UTF-8");
-	String store_address = request.getParameter("search");
+	String store_name = request.getParameter("name");
+	String store_address = request.getParameter("address");
 	StoreDAO dao = new StoreDAO();
-	List<Store> list = dao.SearchList();
-
+	List<Store> list = dao.StoreList();
+	
 	pageContext.setAttribute("store_address", store_address);
+	pageContext.setAttribute("store_name", store_name);
 	pageContext.setAttribute("list", list);
+	System.out.print(store_name);
 	System.out.print(store_address);
+	
+	for(Store store:list){
+		System.out.print(" image path : " +store.getStore_img());
+		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\"
+				+ store.getStore_img());
+		ImageToBase64 converter = new ImageToBase64();
+		String fileStringValue = converter.convert(file);
+		System.out.println("파일의 값" + fileStringValue);
+		
+		store.setStore_img(fileStringValue);
+	}
 	%>
 
 	<!-- loader  -->
@@ -143,11 +160,12 @@
 			</div>
 		</div>
 	</div>
-	<!-- 이미지 슬라이드 시작 -->
-	 <div>
+   <!-- 이미지 슬라이드 시작 -->
+   <div>
       <div>
-        <% for(Store store:list) { %>
-         <%-- <c:forEach items="${list}" var="b" varStatus="status"> --%>
+      <!-- 가게의 이미지, 이름, 주소, 연락처 list에서 불러와서 출력 -->
+        <% for(Store store:list) { 
+        	if(store.getStore_name = store_name){%>
             <div class="slider">
                <div class="slide-container">
                   <swiper-container class="mySwiper"> <swiper-slide>
@@ -178,11 +196,11 @@
                   </table>
                </div>
             </div>
-         <%-- </c:forEach> --%>
+            <% } %>
          <% } %>
       </div>
    </div>
-	<!-- 이미지 슬라이드 끝 -->
+   <!-- 이미지 슬라이드 끝 -->
 	<!--  footer -->
 	<footer>
 		<div class="footer">

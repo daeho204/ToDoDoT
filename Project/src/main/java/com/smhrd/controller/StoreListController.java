@@ -14,8 +14,8 @@ public class StoreListController extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String search = request.getParameter("search");
-		String area = request.getParameter("area");
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
 		
 		StoreDAO dao = new StoreDAO();
 		
