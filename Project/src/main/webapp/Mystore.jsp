@@ -56,12 +56,12 @@ String user_bnum = member.getBnum(); // 실제로는 세션에 저장될 사용�
 session.setAttribute("user_bnum", user_bnum);
 System.out.print(user_bnum); */ 
 
-StoreDAO dao = new StoreDAO();
+/* StoreDAO dao = new StoreDAO();
 Store store = dao.storeOwnContent(user_bnum);
 pageContext.setAttribute("store", store);
 
 String store_id = store.getStore_id();
-session.setAttribute("store_id",store_id);
+session.setAttribute("store_id",store_id); */
 
 %>
 <body class="main-layout">
@@ -204,7 +204,7 @@ session.setAttribute("store_id",store_id);
 	</form>
 	<!-- 가게등록 끝 -->
 	<!-- 가게정보수정 시작 -->
-	<form action="MystoreUpdate.jsp" method="post" id="menuForm">
+<%-- 	<form action="MystoreUpdate.jsp" method="post" id="menuForm">
 	<div class="memInfoEdit">
 		<div style="width: 50%">
 			<h2 class="memInfoEditTitle">업체 정보</h2>
@@ -234,7 +234,7 @@ session.setAttribute("store_id",store_id);
 			</div>
 		</div>
 	</div>
-	</form>
+	</form> --%>
 	<!-- 가게정보 수정 끝 --> 
 	<!-- 예약관리 시작 -->
 	<div class="memInfoEdit">
