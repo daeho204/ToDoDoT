@@ -5,9 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" href="css/JoinSuccess.css">
+
 </head>
 <body>
-	<h1>환영합니다!</h1>
-	<a href="LoginJoinForm.jsp">로그인페이지</a>
+	<% String name = (String)request.getAttribute("name"); %>
+        <div id="container">
+            <h2 class="text">환영합니다!</h2>
+            <h3 class="text"><%=name %>님</h3>
+            <a href="LoginJoinForm.jsp"><button class="form_btn btnLoginJoin text">로그인하기</button></a>
+        </div>
 </body>
 </html>

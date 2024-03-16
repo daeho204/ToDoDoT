@@ -3,6 +3,7 @@ package com.smhrd.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +50,13 @@ public class JoinController extends HttpServlet {
 		// Member객체의 회원정보를 통해 결과를 반환한다
 		
 		System.out.println("결과 : " + res);
+		
+		// 새로 만든 회원의 이름을 JoinSuccess.jsp로 보내기 위해 만듦
+		request.setAttribute("name", name);
+		System.out.println("가져올 이름 : " + name);
 
 		if (res > 0) {
+			ServletContext context = getServletContext();
 			// 포워딩하기
 			RequestDispatcher rd = request.getRequestDispatcher("JoinSuccess.jsp");
 //			response.sendRedirect("joinSuccess.jsp?id="+id); // 쿼리스트링 방식. 간편하지만 아이디가 주소창에 노출된다
