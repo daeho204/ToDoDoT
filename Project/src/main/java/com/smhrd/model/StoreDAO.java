@@ -76,5 +76,15 @@ public class StoreDAO {
 		return store;
 	}
 	
+	// bnum만 가져가서, id가져오기
+	public String getstoreId(String user_bnum) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		String store = sqlSession.selectOne("com.smhrd.database.StoreMapper.getstoreId", user_bnum);
+		sqlSession.close();
+		return store;
+	}
+	
+	
+	
 
 }

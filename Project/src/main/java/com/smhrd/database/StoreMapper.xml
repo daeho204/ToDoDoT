@@ -33,7 +33,13 @@
 		select * from TB_STORE where user_bnum=#{user_bnum}
 
 	</select>
+	
+	<!-- bnum챙겨가서, id값만 -->
+	<select id="getstoreId" parameterType="string"
+		resultType="String">
+		select store_id from TB_STORE where user_bnum=#{user_bnum}
 
+	</select>
 	<!-- favorite check -->
 	<insert id="FavCheck" parameterType="Fav">
 		insert into favorite
@@ -43,6 +49,7 @@
 	<!-- 가게 검색 -->
 	<select id="storeSearch" parameterType="string"
 		resultType="com.smhrd.model.Store">
-		select *from TB_STORE where store_name like '%#{store_name}%' and store_address like '%#{store_address}%'
+		select *from TB_STORE where store_name like
+		'%#{store_name}%' and store_address like '%#{store_address}%'
 	</select>
 </mapper>

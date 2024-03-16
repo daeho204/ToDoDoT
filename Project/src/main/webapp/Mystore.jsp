@@ -48,21 +48,24 @@ String user_bnum = member.getBnum();
 session.setAttribute("user_bnum", user_bnum);
 System.out.print(user_bnum);
 
-
 System.out.print("bnum은" + member.getBnum());
 
 /* HttpSession httpSession = request.getSession();
 String user_bnum = member.getBnum(); // 실제로는 세션에 저장될 사용자의 bnum 값
 session.setAttribute("user_bnum", user_bnum);
-System.out.print(user_bnum); */ 
+System.out.print(user_bnum); */
 
-/* StoreDAO dao = new StoreDAO();
-Store store = dao.storeOwnContent(user_bnum);
-pageContext.setAttribute("store", store);
+//가게에 user_bnum가져가서 id만 챙겨
+StoreDAO dao = new StoreDAO();
+String st = dao.getstoreId(user_bnum);
 
-String store_id = store.getStore_id();
-session.setAttribute("store_id",store_id); */
-
+if (st != null) {
+	
+	Store store = dao.storeOwnContent(user_bnum);
+	pageContext.setAttribute("store", store);
+	String store_id = store.getStore_id();
+	session.setAttribute("store_id", store_id);
+}
 %>
 <body class="main-layout">
 	<!-- loader  -->
@@ -114,13 +117,18 @@ session.setAttribute("store_id",store_id); */
 					<div class="col-md-2">
 						<ul class="social_icon">
 							<li>
-								<% if(member==null){ %>
-									<button class="loginBtn" onclick="location.href='LoginJoinForm.jsp'">로그인</button>
-									<%} else{%>
-									<form action="LogoutController">
-										<button class="logoutBtn">로그아웃</button>
-									</form>
-									<%} %>
+								<%
+								if (member == null) {
+								%>
+								<button class="loginBtn"
+									onclick="location.href='LoginJoinForm.jsp'">로그인</button> <%
+ } else {
+ %>
+								<form action="LogoutController">
+									<button class="logoutBtn">로그아웃</button>
+								</form> <%
+ }
+ %>
 								<div class="dropdown"
 									style="position: absolute; top: 10px; right: -50px;">
 									<button onclick="myFunction()" class="dropbtn">메뉴</button>
@@ -161,6 +169,49 @@ session.setAttribute("store_id",store_id); */
 			</div>
 		</div>
 	</div>
+	<%if (st != null) {
+			 Store store = dao.storeOwnContent(user_bnum);
+			pageContext.setAttribute("store", store);
+			String store_id = store.getStore_id();
+			session.setAttribute("store_id", store_id); 
+	%>
+	<!-- 가게정보수정 시작 -->
+	<form action="MystoreUpdate.jsp" method="post" id="menuForm">
+		<div class="memInfoEdit">
+			<div style="width: 50%">
+				<h2 class="memInfoEditTitle">업체 정보</h2>
+				<table class="memInfoTable" style="width: 100%;">
+					<tr class="memInfoTableTr" style="width: 100%">
+						<td class="favoriteImg" rowspan="8" style="width: 30%"><img
+							style="width: 200px" src="images/nailartshop1.jpg"></td>
+						<td class="memInfoTableTd" style="width: 15%">업체명</td>
+						<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_name()%></td>
+						<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">영업시간</td>
+					<td class="memInfoTableTd" style="width: 39%">10:00 ~ 18:00</td>
+				
+					<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">업체주소</td>
+					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_address()%></td>
+				
+					<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">연락처</td>
+					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_contact()%></td>
+				</tr>
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">홍보문구</td>
+					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_descript()%></td>
+				</tr>
+			</table>
+			<div class="memInfoBtn">
+				<button type="submit" class="memInfoUpdateBtn">수정하기</button>
+			</div>
+		</div>
+	</div>
+	</form> 
+	<!-- 가게정보 수정 끝 -->
+	<%} else{%>
+	
 	<!-- 가게등록시작 -->
 	<form action="StoreJoinController" method="post"
 		enctype="multipart/form-data">
@@ -192,8 +243,7 @@ session.setAttribute("store_id",store_id); */
 					<tr class="memInfoTableTr" style="width: 100%">
 						<td class="storeInfoTableTd1" style="width: 35%">이미지 :</td>
 						<td class="storeInfoTableTd2" style="width: 65%"><input
-							type="file" class="storeInfoTableTd2" id="photo"
-							name="store_img">
+							type="file" class="storeInfoTableTd2" id="photo" name="store_img">
 					</tr>
 				</table>
 				<div class="memInfoBtn">
@@ -203,40 +253,9 @@ session.setAttribute("store_id",store_id); */
 		</div>
 	</form>
 	<!-- 가게등록 끝 -->
-	<!-- 가게정보수정 시작 -->
-<%-- 	<form action="MystoreUpdate.jsp" method="post" id="menuForm">
-	<div class="memInfoEdit">
-		<div style="width: 50%">
-			<h2 class="memInfoEditTitle">업체 정보</h2>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="favoriteImg" rowspan="8" style="width: 30%"><img
-						style="width: 200px" src="images/nailartshop1.jpg"></td>
-					<td class="memInfoTableTd" style="width: 15%">업체명</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_name()%></td>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">영업시간</td>
-					<td class="memInfoTableTd" style="width: 39%">10:00 ~ 18:00</td>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">업체주소</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_address()%></td>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_contact()%></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">홍보문구</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_descript()%></td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button type="submit" class="memInfoUpdateBtn">수정하기</button>
-			</div>
-		</div>
-	</div>
-	</form> --%>
-	<!-- 가게정보 수정 끝 --> 
-	<!-- 예약관리 시작 -->
+	<%} %>
+	
+						<!-- 예약관리 시작 -->
 	<div class="memInfoEdit">
 		<div style="width: 40%">
 			<h2 class="memInfoEditTitle">예약 관리</h2>
@@ -245,7 +264,7 @@ session.setAttribute("store_id",store_id); */
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
 					<td class="memInfoTableTd" style="width: 49%">고채린</td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart1.jpeg"></td>
+											style="width: 200px" src="images/nailart1.jpeg"></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -269,7 +288,7 @@ session.setAttribute("store_id",store_id); */
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
 					<td class="memInfoTableTd" style="width: 49%">정현석</td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart2.jpg"></td>
+											style="width: 200px" src="images/nailart2.jpg"></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -300,7 +319,7 @@ session.setAttribute("store_id",store_id); */
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
 					<td class="memInfoTableTd" style="width: 49%">고채린</td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart1.jpeg"></td>
+											style="width: 200px" src="images/nailart1.jpeg"></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -323,7 +342,7 @@ session.setAttribute("store_id",store_id); */
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
 					<td class="memInfoTableTd" style="width: 49%">정현석</td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-						style="width: 200px" src="images/nailart2.jpg"></td>
+											style="width: 200px" src="images/nailart2.jpg"></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -359,7 +378,7 @@ session.setAttribute("store_id",store_id); */
 							<li><i class="fa fa-phone" aria-hidden="true"></i> 전화번호 :
 								1522-7800</li>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i><a
-								href="#"> smhrd@smhrd.or.kr</a></li>
+													href="#"> smhrd@smhrd.or.kr</a></li>
 						</ul>
 					</div>
 				</div>
@@ -395,7 +414,8 @@ session.setAttribute("store_id",store_id); */
 			minSize : 20,
 		});
 	</script> -->
-</body>
+
+					</body>
 </html>
 
 
