@@ -50,28 +50,25 @@
 <body class="main-layout">
 
 	<%
-	Member member = (Member)session.getAttribute("member");
+	Member member = (Member) session.getAttribute("member");
 	request.setCharacterEncoding("UTF-8");
 	String store_name = request.getParameter("name");
 	String store_address = request.getParameter("address");
 	StoreDAO dao = new StoreDAO();
 	List<Store> list = dao.StoreList();
-	
+
 	pageContext.setAttribute("store_address", store_address);
 	pageContext.setAttribute("store_name", store_name);
-	pageContext.setAttribute("list", list);
-	System.out.print(store_name);
-	System.out.print(store_address);
-	
-	for(Store store:list){
-		System.out.print(" image path : " +store.getStore_img());
-		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
-				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\"
-				+ store.getStore_img());
+
+	for (Store store : list) {
+		System.out.print(" image path : " + store.getStore_img());
+		File file = new File(
+		"C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\" + store.getStore_img());
 		ImageToBase64 converter = new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		System.out.println("파일의 값" + fileStringValue);
-		
+
 		store.setStore_img(fileStringValue);
 	}
 	%>
@@ -111,8 +108,7 @@
 							</button>
 							<div class="collapse navbar-collapse" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto" style="margin-top: 5px">
-									<li class="nav-item "><a class="nav-link"
-										href="index.jsp">Home</a></li>
+									<li class="nav-item "><a class="nav-link" href="index.jsp">Home</a></li>
 									<li class="nav-item"><a class="nav-link" href="about.html">MyPage</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="MyStore.jsp">MyStore</a></li>
@@ -160,47 +156,55 @@
 			</div>
 		</div>
 	</div>
-   <!-- 이미지 슬라이드 시작 -->
-   <div>
-      <div>
-      <!-- 가게의 이미지, 이름, 주소, 연락처 list에서 불러와서 출력 -->
-        <% for(Store store:list) { 
-        	if(store.getStore_name = store_name){%>
-            <div class="slider">
-               <div class="slide-container">
-                  <swiper-container class="mySwiper"> <swiper-slide>
-                  <img src="data:image/jpg;base64,<%= store.getStore_img() %>"> </swiper-slide> <swiper-slide>
-                  <img src="images/nailartshop2.jpg"> </swiper-slide> <swiper-slide>
-                  <img src="images/nailartshop3.jpg"> </swiper-slide> <swiper-slide>
-                  <img src="images/nailartshop4.jpg"> </swiper-slide> <swiper-slide>
-                  <img src="images/nailartshop5.jpg"> </swiper-slide> <swiper-slide>
-                  <img src="images/nailartshop6.jpg"></swiper-container>
-                  <table class="storeListTb">
-                     <tr style="width: 80%">
-                        <td style="width: 80%">
-                           <h1>
-                            	
-                              <a style="color: black"
-                                 href="storeInfo.jsp?store_id=<%= store.getStore_id() %>"
-                                 onclick="window.open(this.href,'_blank','width=600,height=1200');return false;"><%= store.getStore_name() %></a>
-                           </h1> 
-                           <span>★★★★★ 4.8</span>
-                           <p style="color: black">11:00 ~ 21:00</p>
-                           <p style="color: black">주소 : <%= store.getStore_address() %></p>
-                           <p style="color: black">연락처 : <%= store.getStore_contact() %></p>
-                        </td>
-                        <td style="width: 19%; text-align: center;">
-                           <button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
-                        </td>
-                     </tr>
-                  </table>
-               </div>
-            </div>
-            <% } %>
-         <% } %>
-      </div>
-   </div>
-   <!-- 이미지 슬라이드 끝 -->
+	<!-- 이미지 슬라이드 시작 -->
+	<div>
+		<div>
+			<!-- 가게의 이미지, 이름, 주소, 연락처 list에서 불러와서 출력 -->
+			<%
+			for (Store store : list) {
+				if ((store.getStore_address() != null && (store.getStore_address()).contains(store_address))) {
+			%>
+			<div class="slider">
+				<div class="slide-container">
+					<swiper-container class="mySwiper"> <swiper-slide>
+					<img src="data:image/jpg;base64,<%=store.getStore_img()%>">
+					</swiper-slide> <swiper-slide> <img src="images/nailartshop2.jpg">
+					</swiper-slide> <swiper-slide> <img src="images/nailartshop3.jpg">
+					</swiper-slide> <swiper-slide> <img src="images/nailartshop4.jpg">
+					</swiper-slide> <swiper-slide> <img src="images/nailartshop5.jpg">
+					</swiper-slide> <swiper-slide> <img src="images/nailartshop6.jpg"></swiper-container>
+					<table class="storeListTb">
+						<tr style="width: 80%">
+							<td style="width: 80%">
+								<h1>
+
+									<a style="color: black"
+										href="storeInfo.jsp?store_id=<%=store.getStore_id()%>"
+										onclick="window.open(this.href,'_blank','width=600,height=1200');return false;"><%=store.getStore_name()%></a>
+								</h1> <span>★★★★★ 4.8</span>
+								<p style="color: black">11:00 ~ 21:00</p>
+								<p style="color: black">
+									주소 :
+									<%=store.getStore_address()%></p>
+								<p style="color: black">
+									연락처 :
+									<%=store.getStore_contact()%></p>
+							</td>
+							<td style="width: 19%; text-align: center;">
+								<button onclick="" id="favoriteButton" class="favorite-btn">❤</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<%}%>
+			<%}%>
+			
+			
+		</div>
+	</div>
+	<!-- 이미지 슬라이드 끝 -->
 	<!--  footer -->
 	<footer>
 		<div class="footer">

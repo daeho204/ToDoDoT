@@ -170,6 +170,7 @@
 					src="images/search.png"> <select name="address"
 					class="selectArea">
 					<!-- 이거 value를 그냥 한글로할지 영어로 할지는 나중에 생각해야될듯 -->
+					<option></option>
 					<option>서초동</option>
 					<option>잠원동</option>
 					<option>반포동</option>

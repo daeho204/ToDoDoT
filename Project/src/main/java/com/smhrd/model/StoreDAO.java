@@ -24,13 +24,12 @@ public class StoreDAO {
 		// 얘를 반복문 돌때마다 아래 StoreContent에 넣어주면, 이미지를 base64로 반환해주지 않을까?
 	}	
 
-	public List<Store> SearchList(){
+	public Store SearchList(Store store){
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		
-		List<Store> list = sqlSession.selectList("com.smhrd.database.StoreMapper.storeSearch");
-		System.out.println(list);
+		Store result = sqlSession.selectOne("com.smhrd.database.StoreMapper.storeSearch", store);
 		sqlSession.close();
-		return list;
+		return result;
 	}
 	
 	public int storejoin(Store store) {
