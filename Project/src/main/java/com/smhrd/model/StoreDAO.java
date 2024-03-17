@@ -83,6 +83,14 @@ public class StoreDAO {
 		sqlSession.close();
 		return store;
 	}
+
+	public int storeUpdate(Store store) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int res = sqlSession.insert("com.smhrd.database.StoreMapper.update", store);
+		// 자원 반납까지 마무리
+		sqlSession.close();
+		return res;
+	}
 	
 	
 	

@@ -10,6 +10,7 @@
 		<typeAlias type="com.smhrd.model.Menu" alias="Menu"/>
 		<typeAlias type="com.smhrd.model.Fav" alias="Fav"/>
 		<typeAlias type="com.smhrd.model.Member" alias="Member"/>
+		<typeAlias type="com.smhrd.model.Review" alias="Review"/>
 		
 	</typeAliases>
 
