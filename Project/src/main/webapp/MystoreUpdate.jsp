@@ -163,7 +163,7 @@ session.setAttribute("store_id",store_id);
 		</div>
 	</div>
 	<!-- 가게등록시작 -->
-	<form action="StoreJoinController" method="post"
+	<form action="StoreUpdateController" method="post"
 		enctype="multipart/form-data">
 		<div class="memInfoEdit">
 			<div style="width: 35%">

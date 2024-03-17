@@ -13,7 +13,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.smhrd.model.Store;
 import com.smhrd.model.StoreDAO;
 
-public class StoreJoinController extends HttpServlet {
+public class StoreUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +40,7 @@ public class StoreJoinController extends HttpServlet {
 
 		Store store = new Store(user_bnum, store_name, store_address, store_contact, store_descript, store_img);
 		StoreDAO dao = new StoreDAO();
-		int res = dao.storejoin(store);
+		int res = dao.storeUpdate(store);
 
 		System.out.println(store);
 		System.out.println(res);

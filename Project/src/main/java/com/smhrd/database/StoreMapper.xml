@@ -16,6 +16,14 @@
 		#{store_img})
 
 	</insert>
+	
+	<!-- 가게 수정하기 -->
+	<select id="update" parameterType="com.smhrd.model.Store">
+		update tb_store set store_name=#{store_name},store_address=#{store_address},
+		store_contact=#{store_contact},store_descript=#{store_descript},store_img=#{store_img}
+		where user_bnum=#{user_bnum}
+	</select>
+	
 
 	<!-- 검색 시, 가게정보 들고오기 -->
 	<select id="content" parameterType="string"

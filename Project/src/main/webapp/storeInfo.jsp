@@ -213,12 +213,12 @@
 					<p>billytm90</p>
 				</div>
 				<div>
-					<form>
+					<form action="AddReviewController" method="post">
 						<div>
 							<table style="width: 100%">
 								<tr>
 									<td style="width: 10%">메뉴 :</td>
-									<td><input style="width: 50%" type="text" name="menu"
+									<td><input style="width: 50%" type="text" name="menu_id"
 										placeholder='메뉴의 이름을 적어주세요.'></td>
 								</tr>
 								<tr>
@@ -228,9 +228,10 @@
 								</tr>
 								<tr>
 									<td>리뷰 :</td>
-									<td><textarea style="width: 100%" rows="4" name="content"
+									<td><textarea style="width: 100%" rows="4" name="review_content"
 											placeholder='아름다운 세상을 위해 네티켓을 지켜주세요.'></textarea></td>
 								</tr>
+								
 							</table>
 							<div style="text-align:right">
 								<button style="background:black;color:white" type="submit">리뷰 남기기</button>
