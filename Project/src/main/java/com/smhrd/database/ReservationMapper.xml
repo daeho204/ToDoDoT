@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.database.ReservationMapper">
+
+	<insert id="reserve" parameterType="Reservation">
+		insert into RESERVATION(RESERV_NO, USER_ID, STORE_ID, Menu_name, RESERV_CONFIRM) 
+		values(SEQ_RESERV_NO.NEXTVAL, #{user_id},
+		#{store_id}, #{menu_name}, #{reserv_confirm})
+	</insert>
+	
+	<select id="getReserve" parameterType="Reservation"
+				resultType="Reservation">
+		select user_id, menu_name from Reservation
+	</select>
+
+
+</mapper>

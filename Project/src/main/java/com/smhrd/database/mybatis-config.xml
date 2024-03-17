@@ -10,6 +10,7 @@
 		<typeAlias type="com.smhrd.model.Menu" alias="Menu"/>
 		<typeAlias type="com.smhrd.model.Fav" alias="Fav"/>
 		<typeAlias type="com.smhrd.model.Member" alias="Member"/>
+		<typeAlias type="com.smhrd.model.ReservationVO" alias="Reservation"/>
 		
 	</typeAliases>
 
@@ -29,6 +30,7 @@
 		<mapper resource="com/smhrd/database/StoreMapper.xml" />
 		<mapper resource="com/smhrd/database/MenuMapper.xml" />
 		<mapper resource="com/smhrd/database/MemberMapper.xml" />
+		<mapper resource="com/smhrd/database/ReservationMapper.xml" />
 		
 	</mappers>
 </configuration>

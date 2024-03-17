@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.Member"%>
 <%@page import="com.smhrd.model.Menu"%>
 <%@page import="com.smhrd.model.MenuDAO"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
@@ -45,13 +46,16 @@
 <body>
 
 	<%
+	Member member = (Member)session.getAttribute("member");
 	String store_id = request.getParameter("store_id");
+	String user_id = member.getId();
 	StoreDAO dao = new StoreDAO();
 	Store store = dao.storeContent(store_id);
-
+	
+	pageContext.setAttribute("user_id", user_id);
 	pageContext.setAttribute("store", store);
-	System.out.print(store_id);
-	System.out.print(store.getStore_img());
+	System.out.println("storeid: " + store_id);
+	System.out.println("storeimg: " + store.getStore_img());
 
 	// store_id 같은 menu만 list로
 	MenuDAO da = new MenuDAO();
@@ -143,32 +147,45 @@
 				</div>
 			</div>
 			<div id="tab-2" class="tab-content">
+			<form action = "Reservation">
 				<table style="width: 100%">
 					<tr style="width: 100%">
 						<td class="menuTd" style="width: 30%"><img class="storeImg"
 							src="images/nailart1.jpeg"></td>
 						<td class="menuTd" style="width: 60%">이달의 아트(90분)<br>90000원
 						</td>
-						<td class="menuTd" style="width: 9%"><input type="checkbox"></td>
+						<td class="menuTd" style="width: 9%">
+							<input type="checkbox" name="menu" value="이달의 아트(90분)">
+                			<input type="hidden" name="selectedMenu" value="이달의 아트(90분)">
+                			<input type="hidden" name="user_id" value="${user_id}">
+                			<input type="hidden" name="store_id" value="${store.store_id}">
+            			</td>
 					</tr>
 					<tr style="width: 100%">
 						<td class="menuTd" style="width: 30%"><img class="storeImg"
 							src="images/nailart2.jpg"></td>
 						<td class="menuTd" style="width: 60%">젤 프렌치(90분)<br>90000원
 						</td>
-						<td class="menuTd" style="width: 9%"><input type="checkbox"></td>
+						<td class="menuTd" style="width: 9%">
+							<input type="checkbox" name="menu" value="젤 프렌치(90분)">
+                			<!-- <input type="hidden" name="selectedMenu" value="젤 프렌치(90분)"> -->
+            			</td>
 					</tr>
 					<tr style="width: 100%">
 						<td class="menuTd" style="width: 30%"><img class="storeImg"
 							src="images/nailart3.jpg"></td>
-						<td class="menuTd" style="width: 60%">이달의 아트(90분)<br>90000원
+						<td class="menuTd" style="width: 60%">이달의 아트(60분)<br>90000원
 						</td>
-						<td class="menuTd" style="width: 9%"><input type="checkbox"></td>
+						<td class="menuTd" style="width: 9%">
+							<input type="checkbox" name="menu" value="이달의 아트(60분)">
+                			<!-- <!-- <input type="hidden" name="selectedMenu" value="이달의 아트(60분)"> --> -->
+            			</td>
 					</tr>
 				</table>
 				<div class="menuReservation">
-					<button class="reserveBtn">예약하기</button>
+					<button class="reserveBtn" onclick="submitForm()">예약하기</button>
 				</div>
+				</form>
 			</div>
 			<div id="tab-3" class="tab-content">
 				<div>
@@ -224,8 +241,29 @@
 			</div>
 			<div id="tab-4" class="tab-content" onclick="map.relayout()">
 				<div id="map" style="width: 100%; height: 400px;"></div>
-				<script type="text/javascript"
+			<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5a4d674bf36909d1cf9d7e211bfad53"></script>
+			<script>
+			        var storeAddress = "${store.store_address}";
+			        var geocoder = new kakao.maps.services.Geocoder();
+			        geocoder.addressSearch(storeAddress, function(result, status) {
+			            if (status === kakao.maps.services.Status.OK) {
+			                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			                var mapContainer = document.getElementById('map');
+			                var mapOptions = {
+			                    center: coords,
+			                    level: 3
+			                };
+			                var map = new kakao.maps.Map(mapContainer, mapOptions);
+			                var marker = new kakao.maps.Marker({
+			                    map: map,
+			                    position: coords
+			                });
+			            } else {
+			                alert('주소를 찾을 수 없습니다.');
+			            }
+			        });
+				</script>
 				<h6>*지도가 제대로 로딩이 되지 않았다면 지도를 한번 클릭해주세요.</h6>
 			</div>
 		</div>
@@ -267,5 +305,23 @@
 
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 	</script>
+	
+	<script>
+	function submitForm() {
+		var store_id = "${store.store_id}";
+		var user_id = "${user_id}";
+		var selectedMenu = document.getElementByName("menu")
+    	var selectedMenus = [];
+    	/* var checkboxes = document.getElementsByName("menu");
+    	for (var i = 0; i < checkboxes.length; i++) {
+        	if (checkboxes[i].checked) {
+            	selectedMenus.push(checkboxes[i].value);
+        	}
+    	} */
+    	document.querySelector("form").action = "Reservation?store_id=" + store_id + "&user_id=" + user_id +"menu_name="+selectedMenu;
+    	//document.getElementsByName("selectedMenu")[0].value = selectedMenus.join(", ");
+    	document.querySelector("form").submit();
+	}
+</script>
 </body>
 </html>

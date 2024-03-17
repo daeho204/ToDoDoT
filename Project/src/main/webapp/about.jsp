@@ -1,3 +1,7 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.ReservationDAO"%>
+<%@page import="com.smhrd.model.ReservationVO"%>
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -40,6 +44,15 @@
 </head>
 <%
 	Member member = (Member)session.getAttribute("member");
+	ReservationDAO dao = new ReservationDAO();
+	List<ReservationVO> list = dao.getReserve();
+	for(ReservationVO res : list){
+		System.out.print(" res_id : " +res.getReserv_id());
+		System.out.print(" user_id : " +res.getUser_id());
+		System.out.print(" menu : " +res.getMenu_name());
+	};
+	pageContext.setAttribute("list", list);
+	
 %>
 
 <body class="main-layout">
@@ -183,6 +196,7 @@
 	<!-- 만약에 예약이 거절되었다면 "어떤 값"을 반환받고 그 값에 따라 예약정보를 보일지, 예약취소 메시지를 띄울지 조건문 
 	쓰면 될듯합니다 -->
 		<div style="width: 50%">
+			 <% for(ReservationVO res:list) { %>
 			<h2 class="memInfoEditTitle">예약 확인</h2>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
@@ -196,7 +210,7 @@
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
+					<td class="memInfoTableTd" style="width: 39%"><%= res.getMenu_name() %></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">가격</td>
@@ -212,10 +226,12 @@
 					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
 				</tr>
 			</table>
+			
 			<div class="memInfoBtn">
 				<button class="memInfoUpdateBtn" onclick="chat()">채팅하기</button>
 				<button class="memInfoUpdateBtn" onclick="">취소하기</button>
 			</div>
+			<% } %>
 		</div>
 	</div>
 	<!-- 예약확인 끝 -->
