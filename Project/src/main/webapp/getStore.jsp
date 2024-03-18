@@ -115,10 +115,6 @@
                               href="Mystore.jsp">MyStore</a></li>
                            <li class="nav-item active"><a class="nav-link"
                               href="getStore.jsp]">StoreList</a></li>
-                           <li class="nav-item"><a class="nav-link"
-                              href="pricing.html">Pricing</a></li>
-                           <li class="nav-item"><a class="nav-link"
-                              href="contact.html">Contact Us</a></li>
                         </ul>
                      </div>
                   </nav>
