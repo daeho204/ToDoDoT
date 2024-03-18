@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.ReservationAndUserAndStore"%>
 <%@page import="com.smhrd.model.Store"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.StoreDAO"%>
@@ -5,6 +6,8 @@
 <%@page import="com.smhrd.model.Member"%>
 <%@page import="com.smhrd.model.MenuDAO"%>
 <%@page import="com.smhrd.model.Menu"%>
+<%@page import="com.smhrd.model.ReservationDAO"%>
+<%@page import="com.smhrd.model.ReservationVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -58,14 +61,28 @@ System.out.print(user_bnum); */
 //가게에 user_bnum가져가서 id만 챙겨
 StoreDAO dao = new StoreDAO();
 String st = dao.getstoreId(user_bnum);
-
+System.out.print("St의 값은" + st);
+session.setAttribute("store_id", st);
 if (st != null) {
 	
 	Store store = dao.storeOwnContent(user_bnum);
 	pageContext.setAttribute("store", store);
 	String store_id = store.getStore_id();
 	session.setAttribute("store_id", store_id);
+	System.out.print("가게아이디: " + store_id);
 }
+
+
+ReservationDAO rdao = new ReservationDAO();
+List<ReservationAndUserAndStore> list = rdao.getReserve();
+for(ReservationVO res : list){
+	System.out.print(" res_id : " +res.getReserv_id());
+	System.out.print(" user_id : " +res.getUser_id());
+	System.out.print(" menu : " +res.getMenu_name());
+};
+pageContext.setAttribute("list", list);
+
+
 %>
 <body class="main-layout">
 	<!-- loader  -->
@@ -255,10 +272,11 @@ if (st != null) {
 	<div class="memInfoEdit">
 		<div style="width: 40%">
 			<h2 class="memInfoEditTitle">예약 관리</h2>
+			<% for(ReservationAndUserAndStore res:list) { %>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">고채린</td>
+					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_id() %></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
 											style="width: 200px" src="images/nailart1.jpeg"></td>
 				</tr>
@@ -268,7 +286,7 @@ if (st != null) {
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
+					<td class="memInfoTableTd" style="width: 39%"><%= res.getMenu_name() %></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">연락처</td>
@@ -279,30 +297,8 @@ if (st != null) {
 				<button class="memInfoUpdateBtn" onclick="">수락</button>
 				<button class="memInfoUpdateBtn" onclick="">거절</button>
 			</div>
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">정현석</td>
-					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-											style="width: 200px" src="images/nailart2.jpg"></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">날짜</td>
-					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">수락</button>
-				<button class="memInfoUpdateBtn" onclick="">거절</button>
-			</div>
+			<% } %>
+			
 		</div>
 	</div>
 	<!-- 예약관리 끝 -->

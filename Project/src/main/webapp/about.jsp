@@ -1,8 +1,10 @@
+<%@page import="com.smhrd.model.ReservationAndUserAndStore"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ReservationDAO"%>
 <%@page import="com.smhrd.model.ReservationVO"%>
 <%@page import="com.smhrd.model.Member"%>
+<%@page import="com.smhrd.model.Store"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
@@ -44,11 +46,14 @@
 </head>
 <%
 	Member member = (Member)session.getAttribute("member");
+	String user_id = member.getId();
+	session.setAttribute("user_id", user_id);
 	ReservationDAO dao = new ReservationDAO();
-	List<ReservationVO> list = dao.getReserve();
-	for(ReservationVO res : list){
-		System.out.print(" res_id : " +res.getReserv_id());
-		System.out.print(" user_id : " +res.getUser_id());
+	//List<ReservationVO> list = dao.getReserve();
+	List<ReservationAndUserAndStore> list = dao.getReserve();
+	for(ReservationAndUserAndStore res : list){
+		System.out.print(" store_name : " +res.getStore_name());
+		System.out.print(" user_name : " +res.getUser_name());
 		System.out.print(" menu : " +res.getMenu_name());
 	};
 	pageContext.setAttribute("list", list);
@@ -197,7 +202,7 @@
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">업체명</td>
-					<td class="memInfoTableTd" style="width: 49%">올리브 네일</td>
+					<td class="memInfoTableTd" style="width: 49%"><%= res.getStore_name() %></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img style="width:200px" src="images/nailart1.jpeg"></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">

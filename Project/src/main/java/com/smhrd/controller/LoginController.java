@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.smhrd.model.Member;
 import com.smhrd.model.MemberDAO;
+import com.smhrd.model.Store;
 
 
 public class LoginController extends HttpServlet {

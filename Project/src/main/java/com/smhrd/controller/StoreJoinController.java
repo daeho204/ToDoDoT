@@ -19,7 +19,7 @@ public class StoreJoinController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		
 		String savePath = request.getServletContext().getRealPath("/images");
 		int sizeLimit = 5 * 1024 * 1024; // 5MB 제한
 
@@ -41,12 +41,13 @@ public class StoreJoinController extends HttpServlet {
 		Store store = new Store(user_bnum, store_name, store_address, store_contact, store_descript, store_img);
 		StoreDAO dao = new StoreDAO();
 		int res = dao.storejoin(store);
-
+		Store store1 = dao.SearchList(store);
 		System.out.println(store);
 		System.out.println(res);
 
 		if (res > 0) {
-		
+			
+			session.setAttribute("store", store1);
 			response.sendRedirect("Mystore.jsp");
 		} else {
 			response.sendRedirect("index.jsp");
