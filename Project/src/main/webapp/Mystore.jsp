@@ -74,7 +74,7 @@ if (st != null) {
 
 
 ReservationDAO rdao = new ReservationDAO();
-List<ReservationAndUserAndStore> list = rdao.getReserve();
+List<ReservationAndUserAndStore> list = rdao.getReserveUser("62");
 for(ReservationVO res : list){
 	System.out.print(" res_id : " +res.getReserv_id());
 	System.out.print(" user_id : " +res.getUser_id());
@@ -276,7 +276,7 @@ pageContext.setAttribute("list", list);
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_id() %></td>
+					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_name() %></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
 											style="width: 200px" src="images/nailart1.jpeg"></td>
 				</tr>

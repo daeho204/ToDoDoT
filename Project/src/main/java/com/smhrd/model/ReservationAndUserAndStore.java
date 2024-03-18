@@ -14,7 +14,11 @@ public class ReservationAndUserAndStore extends ReservationVO {
 	}
 
 	private String Store_name;
-
+	
+	public ReservationAndUserAndStore(String Store_id,  String User_id, String Menu_name, BigDecimal reserv_confirm) {
+		super(Store_id, User_id, Menu_name, reserv_confirm);
+	}
+	
 	public ReservationAndUserAndStore(String User_id, String Store_id, String Menu_name) {
 		super(User_id, Store_id, Menu_name);
 
@@ -28,10 +32,10 @@ public class ReservationAndUserAndStore extends ReservationVO {
 		this.Store_name = Store_name;
 	}
 
-	public ReservationAndUserAndStore(String Store_name, String Store_id, String User_name, BigDecimal Reserv_confirm,
+	public ReservationAndUserAndStore(String Store_name, String Store_id, String User_id, String User_name, BigDecimal Reserv_confirm,
 			String Menu_name) {
 
-		super(Store_id, Menu_name, Reserv_confirm);
+		super(Store_id, User_id, Menu_name, Reserv_confirm);
 		this.User_name = User_name;
 		this.Store_name = Store_name;
 

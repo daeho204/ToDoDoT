@@ -3,13 +3,13 @@
 <mapper namespace="com.smhrd.database.ReservationMapper">
 
 	<insert id="reserve" parameterType="Reservation">
-		insert into RESERVATION(RESERV_NO, USER_ID, STORE_ID, Menu_name, RESERV_CONFIRM) 
+		insert into RESERVATION(RESERV_NO, USER_ID, STORE_ID, Menu_name) 
 		values(SEQ_RESERV_NO.NEXTVAL, #{user_id},
-		#{store_id}, #{menu_name}, #{reserv_confirm})
+		#{store_id}, #{menu_name})
 	</insert>
 	
 	<select id="getReserve" parameterType="ReservationAndUserAndStore"
-				resultType="ReservationAndUserAndStore">
+				resultType="Reservation">
 		<!-- select user_id, menu_name from Reservation -->
 		SELECT s.Store_name, r.store_id,  u.user_name, r.reserv_confirm, r.menu_name
      
@@ -23,12 +23,14 @@
 	<select id="getReserveUser" parameterType="ReservationAndUserAndStore"
 				resultType="ReservationAndUserAndStore">
 		<!-- select user_id, menu_name from Reservation -->
-		SELECT s.Store_name, r.store_id,  u.user_name, r.reserv_confirm, r.menu_name
+		SELECT s.Store_name, r.store_id,  u.user_id, u.user_name, r.reserv_confirm, r.menu_name
      
   	FROM reservation r INNER JOIN tb_store s  
     ON r.Store_id = s.Store_id
     inner join tb_user u
-    on r.user_name = u.user_name
+    on r.user_id = u.user_id
+  
+    
     
 	</select>
 

@@ -47,10 +47,9 @@
 <%
 	Member member = (Member)session.getAttribute("member");
 	String user_id = member.getId();
-	session.setAttribute("user_id", user_id);
 	ReservationDAO dao = new ReservationDAO();
 	//List<ReservationVO> list = dao.getReserve();
-	List<ReservationAndUserAndStore> list = dao.getReserve();
+	List<ReservationAndUserAndStore> list = dao.getReserveUser(user_id);
 	for(ReservationAndUserAndStore res : list){
 		System.out.print(" store_name : " +res.getStore_name());
 		System.out.print(" user_name : " +res.getUser_name());
@@ -197,7 +196,8 @@
 	<!-- 만약에 예약이 거절되었다면 "어떤 값"을 반환받고 그 값에 따라 예약정보를 보일지, 예약취소 메시지를 띄울지 조건문 
 	쓰면 될듯합니다 -->
 		<div style="width: 50%">
-			 <% for(ReservationVO res:list) { %>
+			 <% for(ReservationAndUserAndStore res:list) {
+				 if(user_id.equals(res.getUser_id())){%>
 			<h2 class="memInfoEditTitle">예약 확인</h2>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
@@ -232,6 +232,7 @@
 				<button class="memInfoUpdateBtn" onclick="chat()">채팅하기</button>
 				<button class="memInfoUpdateBtn" onclick="">취소하기</button>
 			</div>
+			<% }%>
 			<% } %>
 		</div>
 	</div>
