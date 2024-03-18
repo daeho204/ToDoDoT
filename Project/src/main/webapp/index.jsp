@@ -45,9 +45,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <!-- body -->
-<button id="chat" onclick="chat()">
+<!-- <button id="chat" onclick="chat()">
 	<img class="src" src="images/chat.png" alt="chat-icon">
-</button>
+</button> -->
 <body class="main-layout">
 	<%
 		Member member = (Member)session.getAttribute("member");
@@ -110,7 +110,7 @@
 										</li>
 									<%} %>
 									<%if(member==null){ %>
-										<li class="nav-item"><a class="nav-link" href="LoginJoinForm.jsp">MyStore</a>
+										<li class="nav-item"><a class="nav-link" href="LoginJoinForm.jsp">StoreList</a>
 										</li>
 									<%}else{ %>
 										<li class="nav-item"><a class="nav-link" href="getStore.jsp">StoreList</a>
@@ -140,10 +140,9 @@
 									<div id="myDropdown" class="dropdown-content">
 									<% if(member==null){ %>
 									<%}else{ %>
-										<a>==마이페이지==</a> <a href="#home">회원정보수정</a> <a href="#about">예약확인</a>
-										<a href="#contact">찜목록 확인</a> <a>==마이스토어==</a> <a href="#add">가게등록</a>
-										<a href="#add">가게정보 수정</a> <a href="#add">예약 확인/수락</a> <a
-											href="#add">일정 확인</a>
+										<a>==마이페이지==</a> <a href="about.jsp">회원정보수정</a> <a href="about.jsp">예약확인</a>
+										<a href="about.jsp">찜목록 확인</a> <a>==마이스토어==</a> <a href="Mystore.jsp">가게등록</a>
+										<a href="Mystore.jsp">가게정보 수정</a> <a href="Mystore.jsp">예약 확인/수락</a> <
 									<%} %>
 									</div>
 								</div></li>
@@ -179,7 +178,7 @@
 									</h1>
 									<h1 class="bann_desc">소중한 시간</h1>
 									<p>날마다 바쁘게 달려온 자기 자신을 위한 작은 포상</p>
-									<a class="get_btn" href="Javascript:void(0)" role="button">지금
+									<a class="get_btn" href="getStore.jsp" role="button">지금
 										예약하기</a>
 								</div>
 							</div>
@@ -200,11 +199,11 @@
 									</h1>
 									<p>지금 가입하면 모든 네일아트샵에서 무조건 사용가능한 쿠폰 증정</p>
 									<% if(member==null) {%>
-									<a class="get_btn" href="Javascript:void(0)"
+									<a class="get_btn" href="LoginJoinForm.jsp"
 										onclick="LoginJoin()" 
 										role="button"> 가입하기</a>
 									<%}else{ %>
-									<a class="get_btn" href="Javascript:void(0)"
+									<a class="get_btn"
 										href="index.jsp" 
 										role="button"> 가입하기</a>
 									<%} %>
@@ -227,7 +226,7 @@
 										100% 당첨되는<br>포토리뷰 이벤트!
 									</h1>
 									<p>매일네일을 통해 예약서비스를 이용하신 후 포토리뷰를 남겨주시면 모든 분께 선물을 증정해드립니다</p>
-									<a class="get_btn" href="Javascript:void(0)" role="button">리뷰
+									<a class="get_btn" href="getStore.jsp" role="button">리뷰
 										작성하기</a>
 								</div>
 							</div>
