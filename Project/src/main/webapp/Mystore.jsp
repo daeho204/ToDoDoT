@@ -268,7 +268,7 @@ pageContext.setAttribute("list", list);
 	<!-- 가게등록 끝 -->
 	<%} %>
 	
-						<!-- 예약관리 시작 -->
+	<!-- 예약관리 시작 -->
 	<div class="memInfoEdit">
 		<div style="width: 40%">
 			<h2 class="memInfoEditTitle">예약 관리</h2>
@@ -277,6 +277,7 @@ pageContext.setAttribute("list", list);
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
 					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_name() %></td>
+					<td><input type="hidden" name="user_name" value="<%= res.getUser_name() %>"></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
 											style="width: 200px" src="images/nailart1.jpeg"></td>
 				</tr>
@@ -292,18 +293,20 @@ pageContext.setAttribute("list", list);
 					<td class="memInfoTableTd" style="width: 15%">연락처</td>
 					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
 				</tr>
+				<tr>
+					<td> 이 가게의 아이디는 <%= res.getUser_name() %></td>
+				</tr>
 			</table>
 			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">수락</button>
-				<button class="memInfoUpdateBtn" onclick="">거절</button>
+				<button class="memInfoUpdateBtn" id = "accept" onclick="accept()">수락</button>
+				<button class="memInfoUpdateBtn" id = "reject" onclick="reject()">거절</button>
 			</div>
 			<% } %>
-			
 		</div>
 	</div>
 	<!-- 예약관리 끝 -->
 	<!-- 예약확인 시작 -->
-	<div class="memInfoEdit">
+	 <div class="memInfoEdit">
 		<div style="width: 40%">
 			<h2 class="memInfoEditTitle">예약 확인</h2>
 			<table class="memInfoTable" style="width: 100%;">
@@ -328,7 +331,7 @@ pageContext.setAttribute("list", list);
 			</table>
 			<div class="memInfoBtn">
 				<button class="memInfoUpdateBtn" onclick="">예약 취소</button>
-			</div>
+			</div> 
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
@@ -406,8 +409,20 @@ pageContext.setAttribute("list", list);
 			minSize : 20,
 		});
 	</script> -->
+	<script>
+	function accept(){
+		var user_name = document.getElementsByName("user_name");
+		var url = "AcceptController?user_name="+user_name;
+		console.log(user_name);
 
-					</body>
+	    // 페이지 이동
+	    window.location.href = url;
+		/* document.getElementById("accept").action = "AcceptController";
+		document.getElementById("accept").submit(); */
+	}
+	</script>
+
+	</body>
 </html>
 
 
