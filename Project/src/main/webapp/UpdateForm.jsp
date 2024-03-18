@@ -1,6 +1,6 @@
 <%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -30,8 +30,8 @@
             <input type="text" name="phone" value="${member.phone}" placeholder="전화번호 변경">
             <input type="text" name="address" value="${member.address}" placeholder="주소 변경">
             <input type="email" name="email" value="${member.email}" placeholder="이메일 변경">
-            <input type="hidden" name="isbusiness" value="${member.isbusiness}">
-            <input type="hidden" name="bnum" value="${member.bnum}">
+            <input type="checkbox" name="isbusiness">
+            <input type="text" name="bnum" value="${member.bnum}">
             <p></p>
             <button class="form_btn btnLoginJoin">수정 완료</button>
         </div>

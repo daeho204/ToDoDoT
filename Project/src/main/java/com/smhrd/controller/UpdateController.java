@@ -54,6 +54,7 @@ public class UpdateController extends HttpServlet {
 				// 세션 값도 수정해야 웹페이지 출력값도 변경된다
 				session.setAttribute("member", member);
 				response.sendRedirect("about.jsp");
+				System.out.println(member.getIsbusiness());
 			} else {
 				System.out.println("문제 발생");
 				response.sendRedirect("UpdateFail.jsp");
