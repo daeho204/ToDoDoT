@@ -42,6 +42,7 @@
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5a4d674bf36909d1cf9d7e211bfad53&libraries=services"></script>
 </head>
 <body>
 
@@ -240,10 +241,9 @@
 					</form>
 				</div>
 			</div>
-			<div id="tab-4" class="tab-content" onclick="map.relayout()">
+			<div id="tab-4" class="tab-content" >
 				<div id="map" style="width: 100%; height: 400px;"></div>
-			<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5a4d674bf36909d1cf9d7e211bfad53"></script>
+			
 			<script>
 			        var storeAddress = "${store.store_address}";
 			        var geocoder = new kakao.maps.services.Geocoder();
@@ -264,8 +264,9 @@
 			                alert('주소를 찾을 수 없습니다.');
 			            }
 			        });
+			        window.mapCreated = true;
 				</script>
-				<h6>*지도가 제대로 로딩이 되지 않았다면 지도를 한번 클릭해주세요.</h6>
+				<h6>*지도가 제대로 로딩이 되지 않았다면 전체화면으로 변경해주세요</h6>
 			</div>
 		</div>
 	</section>
@@ -297,6 +298,7 @@
 				$("#" + tab_id).addClass('current');
 			});
 		});
+		<!-- 
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
 			center : new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
@@ -304,7 +306,7 @@
 		//지도의 레벨(확대, 축소 정도)
 		};
 
-		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴 -->
 	</script>
 	
 	<script>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.smhrd.model.ReservationAndUserAndStore;
 import com.smhrd.model.ReservationDAO;
 import com.smhrd.model.ReservationVO;
 
@@ -33,7 +34,7 @@ public class Reservation extends HttpServlet {
 //	        System.out.println("선택된 메뉴가 없습니다.");
 //	    }
 	
-	    ReservationVO reservation = new ReservationVO(user_id, store_id, selectedMenu);
+	    ReservationAndUserAndStore reservation = new ReservationAndUserAndStore(user_id, store_id, selectedMenu);
 	    ReservationDAO dao = new ReservationDAO();
 	    int res = dao.reserve(reservation);
 	    System.out.println(res);

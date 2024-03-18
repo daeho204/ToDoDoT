@@ -8,9 +8,28 @@
 		#{store_id}, #{menu_name}, #{reserv_confirm})
 	</insert>
 	
-	<select id="getReserve" parameterType="Reservation"
-				resultType="Reservation">
-		select user_id, menu_name from Reservation
+	<select id="getReserve" parameterType="ReservationAndUserAndStore"
+				resultType="ReservationAndUserAndStore">
+		<!-- select user_id, menu_name from Reservation -->
+		SELECT s.Store_name, r.store_id,  u.user_name, r.reserv_confirm, r.menu_name
+     
+  	FROM reservation r INNER JOIN tb_store s  
+    ON r.Store_id = s.Store_id
+    inner join tb_user u
+    on r.user_id = u.user_id
+    
+	</select>
+	
+	<select id="getReserveUser" parameterType="ReservationAndUserAndStore"
+				resultType="ReservationAndUserAndStore">
+		<!-- select user_id, menu_name from Reservation -->
+		SELECT s.Store_name, r.store_id,  u.user_name, r.reserv_confirm, r.menu_name
+     
+  	FROM reservation r INNER JOIN tb_store s  
+    ON r.Store_id = s.Store_id
+    inner join tb_user u
+    on r.user_name = u.user_name
+    
 	</select>
 
 
