@@ -24,13 +24,21 @@
             <h2>회원정보수정</h2>
             <input type="hidden" name="id" value="${member.id }">
             <li>접속한 ID : ${sessionScope.member.id}</li>
-            <input type="text" name="name" value="${member.name }" placeholder="이름 변경">
+            <input type="hidden" name="name" value="${member.name }" placeholder="이름 변경">
+            <input type="text" name="name"placeholder="이름 변경">
             <!-- <input type="password" placeholder="기존 비밀번호"> -->
-            <input type="password" name="pw"  placeholder="새 비밀번호">
-            <input type="text" name="phone" value="${member.phone}" placeholder="전화번호 변경">
-            <input type="text" name="address" value="${member.address}" placeholder="주소 변경">
-            <input type="email" name="email" value="${member.email}" placeholder="이메일 변경">
-            <input type="checkbox" name="isbusiness">
+            <input type="password" name="pw"  placeholder="비밀번호 변경">
+            <input type="hidden" name="phone" value="${member.phone}" placeholder="전화번호 변경">
+            <input type="text" name="phone" placeholder="전화번호 변경">
+            <input type="hidden" name="address" value="${member.address}" placeholder="주소 변경">
+            <input type="text" name="address" placeholder="주소 변경">
+            <input type="hidden" name="email" value="${member.email}" placeholder="이메일 변경">
+            <input type="email" name="email" placeholder="이메일 변경">
+            
+            <div>
+            	<span>사업자이신가요? </span>
+            	<input type="checkbox" name="isbusiness">
+            </div>
             <input type="text" name="bnum" value="${member.bnum}">
             <p></p>
             <button class="form_btn btnLoginJoin">수정 완료</button>
