@@ -63,8 +63,9 @@
 	for (Store store : list) {
 		System.out.print(" image path : " + store.getStore_img());
 		File file = new File(
-		"C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
-				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\images\\" + store.getStore_img());
+		"C:\\Users\\USER\\Desktop\\ToDoDoT\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\"
+
+				+ store.getStore_img());
 		ImageToBase64 converter = new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		System.out.println("파일의 값" + fileStringValue);

@@ -64,7 +64,7 @@ String st = dao.getstoreId(user_bnum);
 System.out.print("St의 값은" + st);
 session.setAttribute("store_id", st);
 if (st != null) {
-	
+
 	Store store = dao.storeOwnContent(user_bnum);
 	pageContext.setAttribute("store", store);
 	String store_id = store.getStore_id();
@@ -72,18 +72,15 @@ if (st != null) {
 	System.out.print("가게아이디: " + store_id);
 }
 
-
 ReservationDAO rdao = new ReservationDAO();
 List<ReservationAndUserAndStore> list = rdao.getReserveUser("62");
-for(ReservationVO res : list){
-	System.out.print(" res_id : " +res.getReserv_id());
-	System.out.print(" user_id : " +res.getUser_id());
-	System.out.print(" menu : " +res.getMenu_name());
-	System.out.print(" reserv_confirm : " +res.getReserv_confirm());
-};
+for (ReservationVO res : list) {
+	System.out.print(" res_id : " + res.getReserv_id());
+	System.out.print(" user_id : " + res.getUser_id());
+	System.out.print(" menu : " + res.getMenu_name());
+	System.out.print(" reserv_confirm : " + res.getReserv_confirm());
+} ;
 pageContext.setAttribute("list", list);
-
-
 %>
 <body class="main-layout">
 	<!-- loader  -->
@@ -183,11 +180,12 @@ pageContext.setAttribute("list", list);
 			</div>
 		</div>
 	</div>
-	<%if (st != null) {
-			 Store store = dao.storeOwnContent(user_bnum);
-			pageContext.setAttribute("store", store);
-			String store_id = store.getStore_id();
-			session.setAttribute("store_id", store_id); 
+	<%
+	if (st != null) {
+		Store store = dao.storeOwnContent(user_bnum);
+		pageContext.setAttribute("store", store);
+		String store_id = store.getStore_id();
+		session.setAttribute("store_id", store_id);
 	%>
 	<!-- 가게정보수정 시작 -->
 	<form action="MystoreUpdate.jsp" method="post" id="menuForm">
@@ -200,32 +198,35 @@ pageContext.setAttribute("list", list);
 							style="width: 200px" src="images/nailartshop1.jpg"></td>
 						<td class="memInfoTableTd" style="width: 15%">업체명</td>
 						<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_name()%></td>
-						<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">영업시간</td>
-					<td class="memInfoTableTd" style="width: 39%">10:00 ~ 18:00</td>
-				
 					<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">업체주소</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_address()%></td>
-				
+						<td class="memInfoTableTd" style="width: 15%">영업시간</td>
+						<td class="memInfoTableTd" style="width: 39%">10:00 ~ 18:00</td>
 					<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_contact()%></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">홍보문구</td>
-					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_descript()%></td>
-				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button type="submit" class="memInfoUpdateBtn">수정하기</button>
+						<td class="memInfoTableTd" style="width: 15%">업체주소</td>
+						<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_address()%></td>
+					<tr class="memInfoTableTr" style="width: 100%">
+						<td class="memInfoTableTd" style="width: 15%">연락처</td>
+						<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_contact()%></td>
+					</tr>
+					<tr class="memInfoTableTr" style="width: 100%">
+						<td class="memInfoTableTd" style="width: 15%">홍보문구</td>
+						<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_descript()%></td>
+					</tr>
+				</table>
+				<div class="memInfoBtn">
+					<button type="submit" class="memInfoUpdateBtn">수정하기</button>
+				</div>
 			</div>
 		</div>
+	</form>
+	<div class="memInfoBtn">
+		<button type="submit" class="memInfoUpdateBtn"><a href="Calendar4.jsp">일정등록하기</a></button>
 	</div>
-	</form> 
 	<!-- 가게정보 수정 끝 -->
-	<%} else{%>
-	
+	<%
+	} else {
+	%>
+
 	<!-- 가게등록시작 -->
 	<form action="StoreJoinController" method="post"
 		enctype="multipart/form-data">
@@ -267,23 +268,28 @@ pageContext.setAttribute("list", list);
 		</div>
 	</form>
 	<!-- 가게등록 끝 -->
-	<%} %>
-	
+	<%
+	}
+	%>
+
 	<!-- 예약관리 시작 -->
 	<div class="memInfoEdit">
 		<div style="width: 40%">
 			<h2 class="memInfoEditTitle">예약 대기</h2>
-			<% for(ReservationAndUserAndStore res:list) {
-				if((res.getReserv_confirm()).intValue() == 0 ){%>
+			<%
+			for (ReservationAndUserAndStore res : list) {
+				if ((res.getReserv_confirm()).intValue() == 0) {
+			%>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_name() %></td>
-					
-					<td><input type="hidden" name="user_name" value="<%= res.getUser_id() %>"></td>
+					<td class="memInfoTableTd" style="width: 49%"><%=res.getUser_name()%></td>
+
+					<td><input type="hidden" name="user_name"
+						value="<%=res.getUser_id()%>"></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-											style="width: 200px" src="images/nailart1.jpeg"></td>
-											
+						style="width: 200px" src="images/nailart1.jpeg"></td>
+
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -291,35 +297,43 @@ pageContext.setAttribute("list", list);
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%"><%= res.getMenu_name() %></td>
+					<td class="memInfoTableTd" style="width: 39%"><%=res.getMenu_name()%></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">연락처</td>
 					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
 				</tr>
-				
+
 			</table>
 			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" id = "accept" onclick="accept('<%= res.getUser_id()%>')">수락</button>
-				<button class="memInfoUpdateBtn" id = "reject" onclick="reject()">거절</button>
+				<button class="memInfoUpdateBtn" id="accept"
+					onclick="accept('<%=res.getUser_id()%>')">수락</button>
+				<button class="memInfoUpdateBtn" id="reject" onclick="reject()">거절</button>
 			</div>
-			<% } %>
-		<% } %>
+			<%
+			}
+			%>
+			<%
+			}
+			%>
 		</div>
 		<!-- 완료된 예약 -->
 		<div style="width: 40%">
 			<h2 class="memInfoEditTitle">예약 완료</h2>
-			<% for(ReservationAndUserAndStore res:list) {
-				if((res.getReserv_confirm()).intValue() == 1 ){%>
+			<%
+			for (ReservationAndUserAndStore res : list) {
+				if ((res.getReserv_confirm()).intValue() == 1) {
+			%>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_name() %></td>
-					
-					<td><input type="hidden" name="user_name" value="<%= res.getUser_id() %>"></td>
+					<td class="memInfoTableTd" style="width: 49%"><%=res.getUser_name()%></td>
+
+					<td><input type="hidden" name="user_name"
+						value="<%=res.getUser_id()%>"></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-											style="width: 200px" src="images/nailart1.jpeg"></td>
-											
+						style="width: 200px" src="images/nailart1.jpeg"></td>
+
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -327,25 +341,29 @@ pageContext.setAttribute("list", list);
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%"><%= res.getMenu_name() %></td>
+					<td class="memInfoTableTd" style="width: 39%"><%=res.getMenu_name()%></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">연락처</td>
 					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
 				</tr>
-				
+
 			</table>
 			<div class="memInfoBtn">
 				<button class="memInfoUpdateBtn" onclick="">예약 취소</button>
 			</div>
-			<% } %>
-		<% } %>
+			<%
+			}
+			%>
+			<%
+			}
+			%>
 		</div>
-		
+
 	</div>
 	<!-- 예약관리 끝 -->
-	
-	
+
+
 	<!-- 찜목록 끝 -->
 	<div class="endImg">
 		<img src="images/slin.png">
@@ -362,7 +380,7 @@ pageContext.setAttribute("list", list);
 							<li><i class="fa fa-phone" aria-hidden="true"></i> 전화번호 :
 								1522-7800</li>
 							<li><i class="fa fa-envelope" aria-hidden="true"></i><a
-													href="#"> smhrd@smhrd.or.kr</a></li>
+								href="#"> smhrd@smhrd.or.kr</a></li>
 						</ul>
 					</div>
 				</div>
@@ -399,18 +417,18 @@ pageContext.setAttribute("list", list);
 		});
 	</script> -->
 	<script>
-	function accept(user_id){
-		var url = "AcceptController?user_id="+user_id;
-		console.log(user_id);
+		function accept(user_id) {
+			var url = "AcceptController?user_id=" + user_id;
+			console.log(user_id);
 
-	    // 페이지 이동
-	    window.location.href = url;
-		document.getElementById("accept").action = "AcceptController";
-		document.getElementById("accept").submit();
-	}
+			// 페이지 이동
+			window.location.href = url;
+			document.getElementById("accept").action = "AcceptController";
+			document.getElementById("accept").submit();
+		}
 	</script>
 
-	</body>
+</body>
 </html>
 
 
