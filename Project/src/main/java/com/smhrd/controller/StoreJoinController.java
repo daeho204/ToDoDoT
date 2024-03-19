@@ -41,13 +41,13 @@ public class StoreJoinController extends HttpServlet {
 		Store store = new Store(user_bnum, store_name, store_address, store_contact, store_descript, store_img);
 		StoreDAO dao = new StoreDAO();
 		int res = dao.storejoin(store);
-		Store store1 = dao.SearchList(store);
+		/* Store store1 = dao.SearchList(store); */
 		System.out.println(store);
 		System.out.println(res);
 
 		if (res > 0) {
 			
-			session.setAttribute("store", store1);
+			/* session.setAttribute("store", store1); */
 			response.sendRedirect("Mystore.jsp");
 		} else {
 			response.sendRedirect("index.jsp");
