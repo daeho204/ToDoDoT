@@ -46,11 +46,11 @@ public class StoreDAO {
 		Store store = sqlSession.selectOne("com.smhrd.database.StoreMapper.content", store_id);
 		sqlSession.close();
 		// 파일객체 생성해서 서버의 폴더에 저장하는법 (경로 + img 이름/확장자
-		File file = new File(
-				"C:\\Users\\USER\\Desktop\\ToDoDoT\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\"
-
-						+ store.getStore_img());
-
+		
+		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\"
+				+ store.getStore_img());
+		
 		ImageToBase64 converter = new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		System.out.println("파일의 값" + fileStringValue);
@@ -65,10 +65,11 @@ public class StoreDAO {
 		Store store = sqlSession.selectOne("com.smhrd.database.StoreMapper.owncontent", user_bnum);
 		sqlSession.close();
 		// 파일객체 생성해서 서버의 폴더에 저장하는법 (경로 + img 이름/확장자
-		File file = new File(
-				"C:\\Users\\USER\\Desktop\\ToDoDoT\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\"
-
-						+ store.getStore_img());
+		
+		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\"
+				+ store.getStore_img());
+		
 		ImageToBase64 converter = new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		System.out.println("파일의 값" + fileStringValue);

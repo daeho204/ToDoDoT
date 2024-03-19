@@ -221,10 +221,7 @@ pageContext.setAttribute("list", list);
 			</div>
 		</div>
 	</form>
-	<div class="memInfoBtn">
-		<button type="submit" class="memInfoUpdateBtn"><a href="Calendar4.jsp">일정등록하기</a></button>
-	</div>
-	</form>
+	
 	<div class="memInfoBtn">
 				<button class="memInfoUpdateBtn"> <a href = "Calendar4.jsp"> 가게일정 등록하기 </a></button> 
 	</div> 

@@ -61,10 +61,14 @@ Member member = (Member) session.getAttribute("member");
 	for (Store store : list) {
 		//System.out.print("확인용 : " + (store.getStore_img() instanceof String));
 		//dao.storeContent(store.getStore_img());
-		System.out.print(" image path : " + store.getStore_img());
+		/* System.out.print(" image path : " + store.getStore_img());
 		File file = new File(
 		"C:\\Users\\USER\\Desktop\\ToDoDoT\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\" 
-		 + store.getStore_img());
+		 + store.getStore_img()); */
+		System.out.print(" image path : " +store.getStore_img());
+		File file = new File("C:\\Users\\ottki\\OneDrive\\바탕 화면\\빅데이터 23.12.14 - 24.06.10\\Projects\\2nd_Project\\ToDoDoT\\.metadata\\.plugins"
+				+ "\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\images\\"
+				+ store.getStore_img());
 		ImageToBase64 converter = new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		System.out.println("파일의 값" + fileStringValue);
