@@ -216,13 +216,17 @@ pageContext.setAttribute("list", list);
 					<td class="memInfoTableTd" style="width: 15%">홍보문구</td>
 					<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_descript()%></td>
 				</tr>
+				
 			</table>
 			<div class="memInfoBtn">
 				<button type="submit" class="memInfoUpdateBtn">수정하기</button>
 			</div>
 		</div>
 	</div>
-	</form> 
+	</form>
+	<div class="memInfoBtn">
+				<button class="memInfoUpdateBtn"> <a href = "Calendar4.jsp"> 가게일정 등록하기 </a></button> 
+	</div> 
 	<!-- 가게정보 수정 끝 -->
 	<%} else{%>
 	
