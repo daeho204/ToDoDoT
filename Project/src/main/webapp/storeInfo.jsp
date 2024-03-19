@@ -186,7 +186,7 @@
 			<div id="tab-3" class="tab-content">
 				<div>
 					<h4>손 기본케어</h4>
-					<span>★★★★★ 4.8</span>
+					<span>★★★★★ 5</span>
 					<p>
 						네일 받았는데 사장님이 너무 친절하고 좋았어요.<br> 또 갈거에요~! 굳굳!
 					<p>
@@ -194,19 +194,19 @@
 				</div>
 				<div>
 					<h4>젤 그라데이션</h4>
-					<span>★★★★★ 4.8</span>
+					<span>★★★★★ 5</span>
 					<p>
-						네일 받았는데 사장님이 너무 친절하고 좋았어요.<br> 또 갈거에요~! 굳굳!
+						급하게 약속이 잡혀서 당황했는데 빠르게 작업해주셨어요<br> 덕분에 좋은 시간을 보냈습니다~
 					<p>
-					<p>billytm90</p>
+					<p>chaerin24</p>
 				</div>
 				<div>
 					<h4>이달의 아트</h4>
-					<span>★★★★★ 4.8</span>
+					<span>★★★★★ 5</span>
 					<p>
-						네일 받았는데 사장님이 너무 친절하고 좋았어요.<br> 또 갈거에요~! 굳굳!
+						사장님이 너무 친절하시고 실력이 좋으세요~<br> 다음에도 꼭 부탁드릴 예정입니다!
 					<p>
-					<p>billytm90</p>
+					<p>nada208</p>
 				</div>
 				<div>
 					<form action="AddReviewController" method="post">

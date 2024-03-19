@@ -194,7 +194,7 @@
             events: async function (info, successCallback, failureCallback) {
           const eventResult = await axios({
             method: "POST",
-            url: "/CalendarServlet",
+            url: "/CalendarServ",
           });
           const eventData = eventResult.data;
           //이벤트에 넣을 배열 선언하기

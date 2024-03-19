@@ -202,6 +202,7 @@ pageContext.setAttribute("list", list);
 						<td class="memInfoTableTd" style="width: 15%">영업시간</td>
 						<td class="memInfoTableTd" style="width: 39%">10:00 ~ 18:00</td>
 					<tr class="memInfoTableTr" style="width: 100%">
+
 						<td class="memInfoTableTd" style="width: 15%">업체주소</td>
 						<td class="memInfoTableTd" style="width: 39%"><%=store.getStore_address()%></td>
 					<tr class="memInfoTableTr" style="width: 100%">
@@ -216,12 +217,17 @@ pageContext.setAttribute("list", list);
 				<div class="memInfoBtn">
 					<button type="submit" class="memInfoUpdateBtn">수정하기</button>
 				</div>
+
 			</div>
 		</div>
 	</form>
 	<div class="memInfoBtn">
 		<button type="submit" class="memInfoUpdateBtn"><a href="Calendar4.jsp">일정등록하기</a></button>
 	</div>
+	</form>
+	<div class="memInfoBtn">
+				<button class="memInfoUpdateBtn"> <a href = "Calendar4.jsp"> 가게일정 등록하기 </a></button> 
+	</div> 
 	<!-- 가게정보 수정 끝 -->
 	<%
 	} else {
