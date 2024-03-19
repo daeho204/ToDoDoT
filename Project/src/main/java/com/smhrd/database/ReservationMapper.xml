@@ -29,9 +29,25 @@
     ON r.Store_id = s.Store_id
     inner join tb_user u
     on r.user_id = u.user_id
-  
-    
-    
+    <!-- where r.reserv_confirm = 0 --> 
+	</select>
+	
+	<select id="ReservComplete" parameterType="ReservationAndUserAndStore"
+				resultType="ReservationAndUserAndStore">
+		<!-- select user_id, menu_name from Reservation -->
+		SELECT s.Store_name, r.store_id,  u.user_id, u.user_name, r.reserv_confirm, r.menu_name
+     
+  	FROM reservation r INNER JOIN tb_store s  
+    ON r.Store_id = s.Store_id
+    inner join tb_user u
+    on r.user_id = u.user_id
+    where r.reserv_confirm = 1 
+	</select>
+	
+	<!-- 예약 수락하기(update해서 상태가 1이면 수락 0이면 대기) -->
+	<select id="accept" parameterType="string">
+		update reservation set reserv_confirm=1
+		where user_id=#{user_id}
 	</select>
 
 

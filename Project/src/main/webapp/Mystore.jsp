@@ -79,6 +79,7 @@ for(ReservationVO res : list){
 	System.out.print(" res_id : " +res.getReserv_id());
 	System.out.print(" user_id : " +res.getUser_id());
 	System.out.print(" menu : " +res.getMenu_name());
+	System.out.print(" reserv_confirm : " +res.getReserv_confirm());
 };
 pageContext.setAttribute("list", list);
 
@@ -271,15 +272,18 @@ pageContext.setAttribute("list", list);
 	<!-- 예약관리 시작 -->
 	<div class="memInfoEdit">
 		<div style="width: 40%">
-			<h2 class="memInfoEditTitle">예약 관리</h2>
-			<% for(ReservationAndUserAndStore res:list) { %>
+			<h2 class="memInfoEditTitle">예약 대기</h2>
+			<% for(ReservationAndUserAndStore res:list) {
+				if((res.getReserv_confirm()).intValue() == 0 ){%>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
 					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_name() %></td>
-					<td><input type="hidden" name="user_name" value="<%= res.getUser_name() %>"></td>
+					
+					<td><input type="hidden" name="user_name" value="<%= res.getUser_id() %>"></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
 											style="width: 200px" src="images/nailart1.jpeg"></td>
+											
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -293,28 +297,29 @@ pageContext.setAttribute("list", list);
 					<td class="memInfoTableTd" style="width: 15%">연락처</td>
 					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
 				</tr>
-				<tr>
-					<td> 이 가게의 아이디는 <%= res.getUser_name() %></td>
-				</tr>
+				
 			</table>
 			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" id = "accept" onclick="accept()">수락</button>
+				<button class="memInfoUpdateBtn" id = "accept" onclick="accept('<%= res.getUser_id()%>')">수락</button>
 				<button class="memInfoUpdateBtn" id = "reject" onclick="reject()">거절</button>
 			</div>
 			<% } %>
+		<% } %>
 		</div>
-	</div>
-	<!-- 예약관리 끝 -->
-	<!-- 예약확인 시작 -->
-	 <div class="memInfoEdit">
+		<!-- 완료된 예약 -->
 		<div style="width: 40%">
-			<h2 class="memInfoEditTitle">예약 확인</h2>
+			<h2 class="memInfoEditTitle">예약 완료</h2>
+			<% for(ReservationAndUserAndStore res:list) {
+				if((res.getReserv_confirm()).intValue() == 1 ){%>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">고채린</td>
+					<td class="memInfoTableTd" style="width: 49%"><%= res.getUser_name() %></td>
+					
+					<td><input type="hidden" name="user_name" value="<%= res.getUser_id() %>"></td>
 					<td class="reserveImg" rowspan="6" style="width: 35%"><img
 											style="width: 200px" src="images/nailart1.jpeg"></td>
+											
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">날짜</td>
@@ -322,41 +327,25 @@ pageContext.setAttribute("list", list);
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
+					<td class="memInfoTableTd" style="width: 39%"><%= res.getMenu_name() %></td>
 				</tr>
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">연락처</td>
 					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
 				</tr>
-			</table>
-			<div class="memInfoBtn">
-				<button class="memInfoUpdateBtn" onclick="">예약 취소</button>
-			</div> 
-			<table class="memInfoTable" style="width: 100%;">
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">예약자</td>
-					<td class="memInfoTableTd" style="width: 49%">정현석</td>
-					<td class="reserveImg" rowspan="6" style="width: 35%"><img
-											style="width: 200px" src="images/nailart2.jpg"></td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">날짜</td>
-					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
-					<td class="memInfoTableTd" style="width: 39%">젤 그라데이션</td>
-				</tr>
-				<tr class="memInfoTableTr" style="width: 100%">
-					<td class="memInfoTableTd" style="width: 15%">연락처</td>
-					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
-				</tr>
+				
 			</table>
 			<div class="memInfoBtn">
 				<button class="memInfoUpdateBtn" onclick="">예약 취소</button>
 			</div>
+			<% } %>
+		<% } %>
 		</div>
+		
 	</div>
+	<!-- 예약관리 끝 -->
+	
+	
 	<!-- 찜목록 끝 -->
 	<div class="endImg">
 		<img src="images/slin.png">
@@ -410,15 +399,14 @@ pageContext.setAttribute("list", list);
 		});
 	</script> -->
 	<script>
-	function accept(){
-		var user_name = document.getElementsByName("user_name");
-		var url = "AcceptController?user_name="+user_name;
-		console.log(user_name);
+	function accept(user_id){
+		var url = "AcceptController?user_id="+user_id;
+		console.log(user_id);
 
 	    // 페이지 이동
 	    window.location.href = url;
-		/* document.getElementById("accept").action = "AcceptController";
-		document.getElementById("accept").submit(); */
+		document.getElementById("accept").action = "AcceptController";
+		document.getElementById("accept").submit();
 	}
 	</script>
 

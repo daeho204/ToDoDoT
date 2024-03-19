@@ -48,5 +48,21 @@ public class ReservationDAO {
 		return list;
 
 	}
+	
+	public List<ReservationAndUserAndStore> reserveComplete(String user_id) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+
+		List<ReservationAndUserAndStore> list = sqlSession.selectList("com.smhrd.database.ReservationMapper.getReserveUser", user_id);
+		System.out.println(list);
+		sqlSession.close();
+		return list;
+
+	}
+
+	public int accept(String user_id) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int res = sqlSession.update("com.smhrd.database.ReservationMapper.accept", user_id);
+		return res;
+	}
 
 }

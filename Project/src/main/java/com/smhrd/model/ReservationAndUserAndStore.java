@@ -40,5 +40,13 @@ public class ReservationAndUserAndStore extends ReservationVO {
 		this.Store_name = Store_name;
 
 	}
+	public ReservationAndUserAndStore(String User_name) {
+		super();
+		this.User_name = User_name;
+
+	}
+	public ReservationAndUserAndStore(BigDecimal reserv_confirm) {
+		super(reserv_confirm);
+	}
 
 }

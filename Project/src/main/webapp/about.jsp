@@ -54,6 +54,7 @@
 		System.out.print(" store_name : " +res.getStore_name());
 		System.out.print(" user_name : " +res.getUser_name());
 		System.out.print(" menu : " +res.getMenu_name());
+		System.out.print(" reserv_confirm : " +res.getReserv_confirm());
 	};
 	pageContext.setAttribute("list", list);
 	
@@ -195,10 +196,13 @@
 	<div class="memInfoEdit">
 	<!-- 만약에 예약이 거절되었다면 "어떤 값"을 반환받고 그 값에 따라 예약정보를 보일지, 예약취소 메시지를 띄울지 조건문 
 	쓰면 될듯합니다 -->
+	
+		<!-- 대기중인 예약 -->
 		<div style="width: 50%">
 			 <% for(ReservationAndUserAndStore res:list) {
-				 if(user_id.equals(res.getUser_id())){%>
-			<h2 class="memInfoEditTitle">예약 확인</h2>
+				 if(user_id.equals(res.getUser_id()) && (res.getReserv_confirm()).intValue() == 0 ){
+				 	%>
+			<h2 class="memInfoEditTitle">대기중인 예약</h2>
 			<table class="memInfoTable" style="width: 100%;">
 				<tr class="memInfoTableTr" style="width: 100%">
 					<td class="memInfoTableTd" style="width: 15%">업체명</td>
@@ -232,8 +236,50 @@
 				<button class="memInfoUpdateBtn" onclick="chat()">채팅하기</button>
 				<button class="memInfoUpdateBtn" onclick="">취소하기</button>
 			</div>
+				<% }%>
 			<% }%>
-			<% } %>
+		</div>
+		<!-- 확정된 예약 -->
+		<div style="width: 50%">
+			 <% for(ReservationAndUserAndStore res:list) {
+				 if(user_id.equals(res.getUser_id()) && (res.getReserv_confirm()).intValue() == 1 ){
+				 	%>
+			<h2 class="memInfoEditTitle">완료된 예약</h2>
+			<table class="memInfoTable" style="width: 100%;">
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">업체명</td>
+					<td class="memInfoTableTd" style="width: 49%"><%= res.getStore_name() %></td>
+					<td class="reserveImg" rowspan="6" style="width: 35%"><img style="width:200px" src="images/nailart1.jpeg"></td>
+				</tr>
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">날짜</td>
+					<td class="memInfoTableTd" style="width: 39%">2024/03/08/15:30</td>
+				</tr>
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">메뉴</td>
+					<td class="memInfoTableTd" style="width: 39%"><%= res.getMenu_name() %></td>
+				</tr>
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">가격</td>
+					<td class="memInfoTableTd" style="width: 39%">90,000원</td>
+				</tr>
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">업체 주소</td>
+					<td class="memInfoTableTd" style="width: 39%">서울시 서초구 동작대로 132
+						안석빌딩 9층</td>
+				</tr>
+				<tr class="memInfoTableTr" style="width: 100%">
+					<td class="memInfoTableTd" style="width: 15%">업체 연락처</td>
+					<td class="memInfoTableTd" style="width: 39%">01086328420</td>
+				</tr>
+			</table>
+			
+			<div class="memInfoBtn">
+				<button class="memInfoUpdateBtn" onclick="chat()">채팅하기</button>
+				<button class="memInfoUpdateBtn" onclick="">취소하기</button>
+			</div>
+				<% }%>
+			<% }%>
 		</div>
 	</div>
 	<!-- 예약확인 끝 -->

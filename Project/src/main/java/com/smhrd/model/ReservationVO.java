@@ -34,6 +34,12 @@ public abstract class ReservationVO {
 			this.User_id = User_id;
 			this.Menu_name = Menu_name;
 		}
+		public ReservationVO() {
+		}
+		public ReservationVO(BigDecimal reserv_confirm) {
+			this.reserv_confirm = reserv_confirm;
+		}
+		
 		
 		
 		
