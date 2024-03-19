@@ -30,6 +30,6 @@
 	<!-- 리뷰 값 넣기, 근데 지금은 reserv_no 를 지정해서 넣고있음 -->
 	<insert id="addReview" parameterType="Review" >
 		insert into review (reserv_no,review_content,review_star)
-		values('1', #{review_content},#{review_star})
+		values('23', #{review_content},#{review_star})
 	</insert>
 </mapper>
