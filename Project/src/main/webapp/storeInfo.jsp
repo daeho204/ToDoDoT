@@ -176,9 +176,12 @@
 					</tr>
 				</table>
 				<div class="menuReservation">
-					<button class="reserveBtn" onclick="submitForm()">예약하기</button>
+					<button style="position:relative;top:30px;" class="reserveBtn" onclick="submitForm()">예약하기</button>
 				</div>
 				</form>
+				<div>
+					<input class="selectDate" type="date" name="date">	
+				</div>
 			</div>
 			<div id="tab-3" class="tab-content">
 				<div>
