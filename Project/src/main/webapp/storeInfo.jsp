@@ -59,9 +59,9 @@
 	System.out.println("storeimg: " + store.getStore_img());
 
 	// store_id 같은 menu만 list로
-	MenuDAO da = new MenuDAO();
+/* 	MenuDAO da = new MenuDAO();
 	List<Menu> list = da.MenuList(store_id);
-	pageContext.setAttribute("list", list);
+	pageContext.setAttribute("list", list); */
 	/* 
 	// list의 몇번째
 	String menu_id = list.get(0).getMenu_id();
